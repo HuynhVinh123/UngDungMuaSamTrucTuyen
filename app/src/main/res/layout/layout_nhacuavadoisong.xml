@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <technolifestyle.com.imageslider.FlipperLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:id="@+id/flipper"
+            ></technolifestyle.com.imageslider.FlipperLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="6dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhà cửa và đời sống"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:padding="8dp"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerNhaCuaVaDoiSong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bán chạy nhất"
+                    android:textColor="@color/colorBlack"
+                    android:padding="8dp"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerSPBanChayNhatNhaCuaVaDoiSong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mới nhất"
+                    android:textColor="@color/colorBlack"
+                    android:padding="8dp"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerSPMoiNhat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+

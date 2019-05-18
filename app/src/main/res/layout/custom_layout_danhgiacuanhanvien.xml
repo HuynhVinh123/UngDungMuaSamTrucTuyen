@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/imgHinhSPDanhGiaCuaNhanVien"
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:paddingTop="8dp"
+
+                android:paddingBottom="8dp"
+                android:src="@drawable/flashscreen"
+                android:scaleType="fitXY"
+                android:layout_marginTop="4dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/txtTenSPDanhGiaCuaNhanVien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên sản phẩm"
+                    />
+                <RatingBar
+                    android:id="@+id/ratingDanhGiaCuaNhanVien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:scaleX="0.4"
+                    android:scaleY="0.4"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="15dp"
+                    android:rating="4"
+                    android:theme="@style/DoiMauNgoiSaoRatingBar"
+                    />
+
+                <TextView
+                    android:id="@+id/txtTieuDeDanhGiaCuaNhanVien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tiêu đề "
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/txtNoiDungDanhGiaCuaNhanvien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nội dung"
+                    android:layout_marginTop="4dp"
+                    android:maxLength="400"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrayChiTiet"
+            android:layout_marginTop="2dp"
+            />
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

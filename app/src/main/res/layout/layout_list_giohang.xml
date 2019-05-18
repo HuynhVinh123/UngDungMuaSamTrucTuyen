@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarGioHang"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/colorWhite"
+            >
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical"
+        >
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="4dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerGioHang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </android.support.v7.widget.RecyclerView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorWhite"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:padding="8dp"
+                        android:text="Nhập mã giảm giá"
+                        android:textColor="@color/colorBlack" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrayChiTiet"
+                        >
+
+                    </View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <EditText
+                                android:id="@+id/edtMaCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Nhập mã giảm giá"
+                                android:textSize="13sp"
+                                android:layout_marginLeft="8dp"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btnGuiMaCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_weight="3"
+                            android:background="@color/bgLogo"
+                            android:padding="8dp"
+                            android:text="Gửi"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:background="@color/colorWhite"
+                    android:layout_marginTop="8dp"
+                    >
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tạm tính"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtSoTienTamTinh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.380.000 VNĐ"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lnGiamGia"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:background="@color/colorWhite"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    >
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Số tiền giảm"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtSoTienGiam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.380.000 VNĐ"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@color/colorWhite"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thành tiền"
+                    android:padding="8dp"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/txtTongTien"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|top"
+                    android:gravity="top"
+                    android:padding="8dp"
+                    android:text="200.000 đ"
+                    android:textColor="@color/colorRed"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã bao gồm VAT"
+                    android:layout_gravity="bottom|right"
+                    android:textColor="@color/colorBlack"
+                    android:padding="4dp"
+                    />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnMuaNgay"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="Mua ngay"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/custom_button_giohang"
+                android:layout_margin="8dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppLazada_Java</string>
+    <string name="open">Mở</string>
+    <string name="close">Đóng</string>
+    <string name="google_plus_client">818166756283-ifb7hqd9hghnq3p3tan1qu0mekf4nc2o.apps.googleusercontent.com</string>
+    <string name = "facebook_app_id">2269701696616667</string>
+    <string name = "fb_login_protocol_scheme">fb2269701696616667</string>
+
+</resources>

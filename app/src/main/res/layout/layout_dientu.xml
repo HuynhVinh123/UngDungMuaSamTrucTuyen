@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <technolifestyle.com.imageslider.FlipperLayout
+                android:id="@+id/flipperDienTu0"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"></technolifestyle.com.imageslider.FlipperLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerDienTu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/imgQuangCaoDT"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:src="@drawable/flashscreen"
+                android:scaleType="fitXY"
+                />
+            
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Top Các Thương Hiệu Lớn"
+            android:layout_margin="10dp"
+            />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recylerTopCacThuongHieuLon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hàng mới về"
+                android:layout_margin="10dp"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recylerHangMoiVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

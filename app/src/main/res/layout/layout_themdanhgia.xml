@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarDanhGia"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorGreenDarkBackGround"
+        app:titleTextColor="@color/colorWhite"
+        ></android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="8dp"
+                    android:src="@color/bgLogo"
+                    android:padding="4dp"
+                    android:id="@+id/imgHinhSPDanhGia"
+                    />
+                <TextView
+                    android:id="@+id/txtTenSPDanhGia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lốc 4 hộp sữa công thức pha sẵn Abbott Grow Gold Hương Vani(180ml)"
+                    android:layout_marginTop="8dp"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nhận xét về sản phẩm này"
+                android:layout_marginTop="8dp"
+                />
+
+            <RatingBar
+                android:id="@+id/rbDanhGia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scaleY=".5"
+                android:scaleX=".5"
+                android:transformPivotY="0dp"
+                android:transformPivotX="0dp"
+                android:theme="@style/DoiMauNgoiSaoRatingBar"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edtTieuDeDanhGia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <EditText
+                    android:id="@+id/edtTieuDe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="50"
+                    android:lines="1"
+                    android:hint="Tiêu đề đánh giá"
+                    android:textColor="@color/colorBlack"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nội dung đánh giá tối đa 400 ký tự"
+                android:textSize="13sp"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="8dp"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_edtNoiDungDanhgia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+                <EditText
+                    android:id="@+id/edtNoiDung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:scrollbars="vertical"
+                    android:hint="Nội dung đánh giá"
+                    android:textColor="@color/colorBlack"
+                    android:lines="3"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDongYDanhGia"
+                android:text="Đồng Ý"
+                android:background="@color/bgLogo"
+                />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

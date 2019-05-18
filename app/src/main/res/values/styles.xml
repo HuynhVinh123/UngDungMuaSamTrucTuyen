@@ -1,0 +1,53 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/bgLogo</item>
+        <item name="android:textColorSecondary">@color/colorGray</item>
+    </style>
+    <style name="menuitemcolor" parent="AppTheme">
+        <item name="android:textColorPrimary">@color/bgToolbar</item>
+        <item name="drawerArrowStyle">@style/changecolordrawertoogle</item>
+
+    </style>
+
+    <style name="changecolordrawertoogle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/colorWhite</item>
+    </style>
+
+    <style name="capfale" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <declare-styleable name="PasswordEditText">
+        <attr name="useStrike" format="boolean"/>
+        <attr name="useValidate" format="boolean"/>
+    </declare-styleable>
+
+    <style name="DoiMauNgoiSaoRatingBar" parent="AppTheme">
+        <item name="colorControlNormal">@color/bgLogo</item>
+    </style>
+
+    <style name="ColorTextForSearchView" parent="AppTheme">
+        <item name="android:editTextColor">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
+    </style>
+
+    <style name="TextAppearance.Widget.IconMenu.Item" parent="AppTheme">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="FacebookLoginButton">
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="ColorForToolbar" parent="AppTheme">
+        <item name="colorControlNormal">@color/colorWhite</item>
+    </style>
+
+</resources>

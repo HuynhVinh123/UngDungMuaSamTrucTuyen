@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorGrayChiTiet">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarChiTietHD"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorGreenDarkBackGround"
+        app:titleTextColor="@color/colorWhite"
+        ></android.support.v7.widget.Toolbar>
+
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestScrollviewCTHD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorWhite"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="12dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mã đơn hàng: "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        />
+                    <TextView
+                        android:id="@+id/txtMaHoaDonChiTiet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="232"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorBlack"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="4dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày đặt hàng: "
+                        />
+                    <TextView
+                        android:id="@+id/txtNgayDatHoaDonChiTiet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="232"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="12dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trạng thái: "
+                        />
+                    <TextView
+                        android:id="@+id/txtTrangThaiHoaDonChiTiet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="232"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ người nhận"
+                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    />
+
+                <TextView
+                    android:id="@+id/txtTenNguoiNhanCTHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Huỳnh Vinh"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/colorBlack"
+                    />
+                <TextView
+                    android:id="@+id/txtSoDTCTHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0372643294"
+                    android:layout_marginLeft="12dp"
+                    />
+                <TextView
+                    android:id="@+id/txtDiaChiNguoiNhanCTHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số 91 đường Tân lập 2"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="12dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hình thức giao hàng"
+                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    />
+
+                <TextView
+                    android:id="@+id/txtHinhThucGiaoHang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="Giao hàng tiêu chuẩn(Dự kiến giao hàng ngày 24/01/2019)"
+                    android:layout_marginBottom="12dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hình thức thanh toán"
+                    android:padding="12dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="Thanh toán trực tiếp khi giao hàng"
+                    android:layout_marginBottom="12dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin đơn hàng"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorBlack"
+                    android:padding="12dp"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrayChiTiet"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerChiTietHoaDon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/colorWhite"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="Thành tiền"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:id="@+id/txtTongTienCTHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="97.000 đ"
+                    android:textColor="@color/colorRed"
+                    android:textSize="20sp"
+                    android:layout_marginRight="12dp"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/lnHuyDonHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone"
+        >
+        <Button
+            android:id="@+id/btnHuyDonHang"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button_giohang"
+            android:text="Hủy Đơn Hàng"
+            android:textColor="@color/colorWhite"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
