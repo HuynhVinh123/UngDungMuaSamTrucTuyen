@@ -68,7 +68,7 @@ public class ThemSanPhamModel {
 
         // Lấy dữ liệu bằng phương thức POST
         String duongdan = IPConnect.IP ;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMss");
         String image1 = sdf.format(new Date());
         double image2 = Double.parseDouble(image1) + 1;
         double image3 = Double.parseDouble(image1) + 2;
@@ -87,13 +87,15 @@ public class ThemSanPhamModel {
         hashImageName3.put("image_tag3",String.valueOf(image3));
 
         HashMap<String,String> hashConvertImage1 = new HashMap<>();
+        HashMap<String,String> hashConvertImage2 = new HashMap<>();
+        HashMap<String,String> hashConvertImage3 = new HashMap<>();
+
         hashConvertImage1.put("image_data1",convertImage1);
 
-        HashMap<String,String> hashConvertImage2 = new HashMap<>();
         hashConvertImage2.put("image_data2",convertImage2);
 
-        HashMap<String,String> hashConvertImage3 = new HashMap<>();
         hashConvertImage3.put("image_data3",convertImage3);
+
 
         HashMap<String,String> hashTenSP = new HashMap<>();
         hashTenSP.put("tensp",sanPham.getTENSP());
@@ -123,6 +125,7 @@ public class ThemSanPhamModel {
         attrs.add(hashConvertImage1);
         attrs.add(hashConvertImage2);
         attrs.add(hashConvertImage3);
+        //attrs.add(hashDanhSachHinhAnh);
         attrs.add(hashTenSP);
         attrs.add(hashGia);
         attrs.add(hashThongTin);

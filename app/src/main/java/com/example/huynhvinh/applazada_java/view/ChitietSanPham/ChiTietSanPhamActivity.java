@@ -2,6 +2,8 @@ package com.example.huynhvinh.applazada_java.view.ChitietSanPham;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
@@ -47,6 +49,8 @@ import com.example.huynhvinh.applazada_java.model.ObjectClass.ChiTietKhuyenMai;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.ChiTietSanPham;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.DanhGia;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.SanPham;
+import com.example.huynhvinh.applazada_java.model.Room.object.SanPham_Room;
+import com.example.huynhvinh.applazada_java.model.Room.viewmodel.SanPhamViewModel;
 import com.example.huynhvinh.applazada_java.view.DangNhap.DangNhapActivity;
 import com.example.huynhvinh.applazada_java.view.DanhGia.DanhSachDanhGiaActivity;
 import com.example.huynhvinh.applazada_java.view.DanhGia.ThemDanhGiaActivity;
@@ -59,23 +63,24 @@ import java.util.List;
 
 public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChiTietSanPham, ViewPager.OnPageChangeListener, View.OnClickListener {
 
-    ViewPager viewPager;
-    PresenterLogicChiTietSanPham presenterLogicChiTietSanPham;
-    PresenterLogicKhuyenMai presenterLogicKhuyenMai;
-    TextView[] txtDots;
-    LinearLayout layoutDots;
-    List<Fragment> fragmentList;
-    TextView txtTenSP,txtGiaTien,txtTenCuaHangDongGoi,txtThongTinSP,txtXemTatCaNhanXet,txtGioHang,txtGiamGia;
-    Toolbar toolbar;
-    ImageView imgXemThemChiTiet,imThemGioHang,imgYeuThich;
-    boolean kiemtraxochitiet = false;
-    boolean onPause = false;
-    LinearLayout lnThongSoKyThuat;
-    TextView txtVietDanhGia;
-    RecyclerView recyclerDanhGiaChiTiet;
-    RatingBar rtbDanhGiaSanPham;
-    SanPham sanPhamGioHang,sanPhamYeuThich;
-    NestedScrollView nestedScrollView;
+    private ViewPager viewPager;
+    private PresenterLogicChiTietSanPham presenterLogicChiTietSanPham;
+    private PresenterLogicKhuyenMai presenterLogicKhuyenMai;
+    private TextView[] txtDots;
+    private LinearLayout layoutDots;
+    private List<Fragment> fragmentList;
+    private TextView txtTenSP,txtGiaTien,txtTenCuaHangDongGoi,txtThongTinSP,txtXemTatCaNhanXet,txtGioHang,txtGiamGia;
+    private Toolbar toolbar;
+    private ImageView imgXemThemChiTiet,imThemGioHang,imgYeuThich;
+    private boolean kiemtraxochitiet = false;
+    private boolean onPause = false;
+    private LinearLayout lnThongSoKyThuat;
+    private TextView txtVietDanhGia;
+    private RecyclerView recyclerDanhGiaChiTiet;
+    private RatingBar rtbDanhGiaSanPham;
+    private SanPham sanPhamGioHang,sanPhamYeuThich;
+    private NestedScrollView nestedScrollView;
+    private SanPhamViewModel sanPhamViewModel;
 
     private String hinhSanPham,tenSanPham;
     private int masp;
@@ -85,6 +90,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.layout_chitietsanpham);
 
         txtGiamGia = (TextView) findViewById(R.id.txtGiamgia);
@@ -130,12 +136,12 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
     @Override
     public void HienThiChiTietSanPham(final SanPham sanPham) {
 
+        String[] hinhs = sanPham.getANHNHO().split(",");
+
         sanPhamYeuThich = sanPham;
         sanPhamGioHang = sanPham;
         // Cập nhật số lượng sản phẩm tối đa mà của hàng đang có
         sanPhamGioHang.setSOLUONGTONKHO(sanPham.getSOLUONG());
-
-        String[] hinhs = sanPham.getANHNHO().split(",");
 
         // để chuyển dữ liệu qua trang đánh giá sản phẩm
         masp = sanPham.getMASP();
@@ -165,6 +171,8 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
                 txtGiamGia.setText(gia + " VNĐ");
 
                 giatien  = giatien*phantramkm/100;
+
+
             }
         }
 
@@ -174,8 +182,6 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
         txtGiaTien.setText(gia + " VNĐ");
 
         txtTenCuaHangDongGoi.setText(sanPham.getTENNHANVIEN());
-
-
 
         if(sanPham.getTHONGTIN().length()<100)
         {
@@ -210,6 +216,18 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
                 }
             });
         }
+
+        // Thêm sản phẩm vào danh sách đã xem
+        SanPham_Room sanPham_room = new SanPham_Room();
+        sanPham_room.setMasp(sanPham.getMASP());
+        sanPham_room.setTensp(sanPham.getTENSP());
+        sanPham_room.setGia(sanPham.getGIA());
+        sanPham_room.setImage(TrangChuActivity.SERER + hinhs[0]);
+        sanPham_room.setGiakm(giatien);
+
+        // Add sản phẩm vào danh sách sản phẩm đã xem
+        sanPhamViewModel = ViewModelProviders.of(this).get(SanPhamViewModel.class);
+        sanPhamViewModel.themSanPham(sanPham_room);
 
         nestedScrollView.fullScroll(View.FOCUS_UP);
         nestedScrollView.scrollTo(0,0);

@@ -21,12 +21,11 @@ public class ManHinhChaoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try{
-                    sleep(500);
-                    Intent iTrangChu = new Intent(ManHinhChaoActivity.this, TrangChuActivity.class);
-                    startActivity(iTrangChu);
+                    sleep(300);
+                    //Intent iTrangChu = new Intent(ManHinhChaoActivity.this, TrangChuActivity.class);
+                    //startActivity(iTrangChu);
                 }
                 catch (Exception e){
-
                 }
             }
         });

@@ -2,6 +2,7 @@ package com.example.huynhvinh.applazada_java.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.huynhvinh.applazada_java.Presenter.ThemSanPham.EventClickExpan;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.LoaiSanPham;
 import com.example.huynhvinh.applazada_java.model.TrangChu.XuLyMenu.XuLyJSONMenu;
@@ -25,10 +27,13 @@ public class ExpandLoaiSanPhamAdapter extends BaseExpandableListAdapter {
     Context context;
     List<LoaiSanPham> loaiSanPhamList;
     ViewHolderMenu viewHolderMenu;
-
-    public ExpandLoaiSanPhamAdapter(Context context, List<LoaiSanPham> loaiSanPhamList) {
+    EventClickExpan eventClickExpan;
+    int checkThemSanPham;
+    public ExpandLoaiSanPhamAdapter(Context context, List<LoaiSanPham> loaiSanPhamList, EventClickExpan eventClickExpan,int checkThemSanPham) {
         this.context = context;
         this.loaiSanPhamList = loaiSanPhamList;
+        this.eventClickExpan = eventClickExpan;
+        this.checkThemSanPham = checkThemSanPham;
 
         XuLyJSONMenu xuLyJSONMenu = new XuLyJSONMenu();
         int count = loaiSanPhamList.size();
@@ -135,10 +140,21 @@ public class ExpandLoaiSanPhamAdapter extends BaseExpandableListAdapter {
             viewHolderMenu.txtTenLoaiSP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(checkThemSanPham==0) {
                     Intent intent = new Intent(context, ThemSanPhamActivity.class);
                     intent.putExtra("maloaisp",loaiSanPhamList.get(vitriGroupCha).getMALOAISP());
                     intent.putExtra("tenloaisp",loaiSanPhamList.get(vitriGroupCha).getTENLOAISP());
                     context.startActivity(intent);
+                    }
+                    else {
+                        SharedPreferences cachedDangNhap = context.getSharedPreferences("loaisanpham",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = cachedDangNhap.edit();
+                        editor.putInt("maloaisanpham",loaiSanPhamList.get(vitriGroupCha).getMALOAISP());
+                        editor.putString("tenloaisanpham",loaiSanPhamList.get(vitriGroupCha).getTENLOAISP());
+                        editor.commit();
+
+                        eventClickExpan.onClick();
+                    }
                 }
             });
         }
@@ -172,7 +188,7 @@ public class ExpandLoaiSanPhamAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int vitriGroupCha, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         SecondExpandable secondExpandable = new SecondExpandable(context);
-        ExpandLoaiSanPhamAdapter secondAdapter = new ExpandLoaiSanPhamAdapter(context,loaiSanPhamList.get(vitriGroupCha).getListCon());
+        ExpandLoaiSanPhamAdapter secondAdapter = new ExpandLoaiSanPhamAdapter(context,loaiSanPhamList.get(vitriGroupCha).getListCon(),eventClickExpan,checkThemSanPham);
         secondExpandable.setAdapter(secondAdapter);
 
         secondExpandable.setGroupIndicator(null);

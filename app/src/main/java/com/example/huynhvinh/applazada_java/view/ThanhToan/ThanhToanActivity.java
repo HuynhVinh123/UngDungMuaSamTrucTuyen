@@ -96,7 +96,6 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
         switch (id)
         {
@@ -104,7 +103,6 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                 onBackPressed();
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

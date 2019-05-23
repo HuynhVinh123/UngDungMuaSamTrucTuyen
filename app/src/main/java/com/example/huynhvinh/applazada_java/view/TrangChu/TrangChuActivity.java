@@ -1,7 +1,10 @@
 package com.example.huynhvinh.applazada_java.view.TrangChu;
 
+import android.content.ContentUris;
 import android.content.Intent;
 
+import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -62,7 +65,7 @@ import java.util.List;
 
 public class TrangChuActivity extends AppCompatActivity implements View.OnClickListener,ViewXuLyMenu {
 
-    public static  final  String SERER =  "http://192.168.7.9:8080/weblazada/webadmin";
+    public static final String SERER = "http://192.168.1.125:8080/weblazada/webadmin";
 
     Button btnTimKiem;
     Toolbar toolbar;
@@ -80,7 +83,7 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
     String tennguoidung,emailFaceBook,id;
     AccessToken accessToken;
     PresenterLogicDangKy presenterLogicDangKy;
-
+    FloatingActionButton btn_Message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,11 +108,13 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
         dangNhapModel = new DangNhapModel();
 
         btnTimKiem.setOnClickListener(this);
+        btn_Message.setOnClickListener(this);
 
     }
 
     private void anhXa() {
 
+        btn_Message = (FloatingActionButton) findViewById(R.id.button_message);
         btnTimKiem = (Button) findViewById(R.id.btnTimKiem);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -266,7 +271,6 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                     Intent iQuanLyTaiKhoan = new Intent(this, QuanLyTaiKhoanActivity.class);
                     startActivity(iQuanLyTaiKhoan);
                 }
-
                 break;
             case R.id.itDonHangCuaToi:
                 String tennv = dangNhapModel.LayCachedDangNhap(this);
@@ -286,8 +290,28 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-            Intent iTimKiem = new Intent(this, TimKiemActivity.class);
-            startActivity(iTimKiem);
+
+        int id = v.getId();
+        switch (id)
+        {
+            case R.id.btnTimKiem:
+                Intent iTimKiem = new Intent(this, TimKiemActivity.class);
+                startActivity(iTimKiem);
+                break;
+            case R.id.button_message:
+                Uri uri = Uri.parse("fb-messenger://user/");
+                 uri = ContentUris.withAppendedId(uri,Long.valueOf("100010434228127"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+                try {
+                    startActivity(intent);
+                }
+
+                catch(Exception e) {
+                    Toast.makeText(this,"Oups!Can't open Facebook messenger right now. Please try again later.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 
     @Override

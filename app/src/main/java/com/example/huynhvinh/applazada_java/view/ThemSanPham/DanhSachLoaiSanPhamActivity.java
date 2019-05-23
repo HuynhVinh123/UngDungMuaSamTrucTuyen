@@ -9,6 +9,7 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.example.huynhvinh.applazada_java.Adapter.ExpandLoaiSanPhamAdapter;
+import com.example.huynhvinh.applazada_java.Presenter.ThemSanPham.EventClickExpan;
 import com.example.huynhvinh.applazada_java.Presenter.ThemSanPham.PrensenterLogicThemSanPham;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.LoaiSanPham;
@@ -20,6 +21,7 @@ public class DanhSachLoaiSanPhamActivity extends AppCompatActivity implements Vi
     PrensenterLogicThemSanPham prensenterLogicThemSanPham;
     ExpandableListView expandableListView;
     Toolbar toolbar;
+    int checkThemSanPham;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class DanhSachLoaiSanPhamActivity extends AppCompatActivity implements Vi
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Danh sách loại sản phẩm");
 
+        checkThemSanPham = getIntent().getIntExtra("checkThemSanPham",-1);
+
         prensenterLogicThemSanPham = new PrensenterLogicThemSanPham(this);
         prensenterLogicThemSanPham.LayDanhSachLoaiSanPham();
     }
@@ -45,9 +49,14 @@ public class DanhSachLoaiSanPhamActivity extends AppCompatActivity implements Vi
 
     @Override
     public void HienThiDanhSachLoaiSanPham(List<LoaiSanPham> loaiSanPhamList) {
-        ExpandLoaiSanPhamAdapter expandLoaiSanPhamAdapter = new ExpandLoaiSanPhamAdapter(this,loaiSanPhamList);
+        ExpandLoaiSanPhamAdapter expandLoaiSanPhamAdapter = new ExpandLoaiSanPhamAdapter(this,loaiSanPhamList,
+        new EventClickExpan() {
+            @Override
+            public void onClick() {
+                onBackPressed();
+            }
+        },checkThemSanPham);
         expandableListView.setAdapter(expandLoaiSanPhamAdapter);
         expandLoaiSanPhamAdapter.notifyDataSetChanged();
-
     }
 }

@@ -21,14 +21,12 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
-
-        >
+        android:background="@color/colorWhite">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-
+            android:layout_marginTop="?attr/actionBarSize"
             >
             <LinearLayout
                 android:id="@+id/linearThongTinSanPhamTrong"
@@ -62,14 +60,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="@color/colorWhite"
-                android:layout_marginTop="30dp"
                 >
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp"
+
                     android:background="@color/colorWhite"
                     android:gravity="center"
                     >
@@ -115,6 +111,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:scaleType="fitXY"
+
                             />
                     </FrameLayout>
                     <FrameLayout
@@ -137,12 +134,21 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:scaleType="fitXY"
+
                             />
                     </FrameLayout>
 
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+ Bạn phải thêm ảnh theo thứ tự từ trái sang phải"
+                    android:layout_marginLeft="12dp"
+                    android:textSize="11sp"
+                    />
+
                 <View
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/colorGrayChiTiet"
@@ -153,6 +159,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@color/colorWhite"
+                    android:layout_marginTop="8dp"
                     >
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -167,7 +174,7 @@
                             android:backgroundTint="@color/colorWhite"
                             android:background="@color/colorWhite"
                             android:textSize="14sp"
-                            android:focusable="false"
+
                             />
                     </android.support.design.widget.TextInputLayout>
 

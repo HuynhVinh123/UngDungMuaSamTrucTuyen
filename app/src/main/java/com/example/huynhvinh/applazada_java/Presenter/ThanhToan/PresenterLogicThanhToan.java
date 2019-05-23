@@ -35,7 +35,6 @@ public class PresenterLogicThanhToan implements IPresenterThanhToan {
             {
                 gioHangModel.XoaSanPhamTrongGioHang(sanPhamList.get(i).getMASP());
             }
-
         }else{
             viewThanhToan.DatHangThatBai();
         }

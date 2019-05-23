@@ -5,9 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ManHinhChao.ManHinhChaoActivity"
-    android:background="@drawable/flashscreen"
+    android:background="@drawable/custom_color"
+    android:gravity="center"
     >
 
-
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/island"
+        />
 
 </RelativeLayout>

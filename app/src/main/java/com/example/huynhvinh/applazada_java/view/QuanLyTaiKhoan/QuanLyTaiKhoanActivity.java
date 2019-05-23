@@ -23,6 +23,7 @@ import com.example.huynhvinh.applazada_java.view.DanhGia.DanhSachDanhGiaActivity
 import com.example.huynhvinh.applazada_java.view.QuanLyHoaDon.DonHangActivity;
 import com.example.huynhvinh.applazada_java.view.QuanLyHoaDon.QuanLyHoaDonActivity;
 import com.example.huynhvinh.applazada_java.view.SanPhamDaMua.SanPhamDaMuaActivity;
+import com.example.huynhvinh.applazada_java.view.SanPhamDaXem.SanPhamDaXemActivity;
 import com.example.huynhvinh.applazada_java.view.SanPhamYeuThich.SanPhamYeuThichActivity;
 import com.example.huynhvinh.applazada_java.view.ThemSanPham.ThemSanPhamActivity;
 
@@ -35,7 +36,7 @@ public class QuanLyTaiKhoanActivity extends AppCompatActivity implements View.On
     TextView txtTenDN,txtDangNhapBang,txtSoLuongDonHang,txtSoLuongSoLuongSanPham;
     DangNhapModel dangNhapModel;
     PresenterLogicQuanLyHoaDon presenterQuanLyHoaDon;
-    LinearLayout linearChiTietNhanVien,lnDonHangChoKiemDuyet,lnDonHangThanhCong,lnDonHangDaHuy,lnDonHangDangVanChuyen,lnSanPhamDaMua,lnSanPhamYeuThich,lnNhanXetCuaToi;
+    LinearLayout linearChiTietNhanVien,lnDonHangChoKiemDuyet,lnDonHangThanhCong,lnDonHangDaHuy,lnDonHangDangVanChuyen,lnSanPhamDaMua,lnSanPhamYeuThich,lnNhanXetCuaToi,lnSanPhamDaXem;
     TextView txtDonHangChoKiemDuyet;
     FButton fButtonBanHang;
 
@@ -45,6 +46,7 @@ public class QuanLyTaiKhoanActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.layout_quanlytaikhoan);
 
         fButtonBanHang = (FButton) findViewById(R.id.f_twitter_button);
+        lnSanPhamDaXem = (LinearLayout) findViewById(R.id.lnSanPhamDaXem);
         lnNhanXetCuaToi = (LinearLayout) findViewById(R.id.lnNhanXetCuaToi);
         lnSanPhamYeuThich = (LinearLayout) findViewById(R.id.lnSanPhamYeuThich);
         lnSanPhamDaMua = (LinearLayout) findViewById(R.id.lnSanPhamDaMua);
@@ -107,6 +109,7 @@ public class QuanLyTaiKhoanActivity extends AppCompatActivity implements View.On
         lnSanPhamYeuThich.setOnClickListener(this);
         lnNhanXetCuaToi.setOnClickListener(this);
         fButtonBanHang.setOnClickListener(this);
+        lnSanPhamDaXem.setOnClickListener(this);
     }
 
     @Override
@@ -159,6 +162,10 @@ public class QuanLyTaiKhoanActivity extends AppCompatActivity implements View.On
                 Intent iThemSanPham = new Intent(this, ThemSanPhamActivity.class);
                 iThemSanPham.putExtra("kiemtra",0);
                 startActivity(iThemSanPham);
+                break;
+            case R.id.lnSanPhamDaXem:
+                Intent iSanPhamDaXem = new Intent(this, SanPhamDaXemActivity.class);
+                startActivity(iSanPhamDaXem);
                 break;
         }
     }

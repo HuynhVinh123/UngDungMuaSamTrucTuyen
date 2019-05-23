@@ -1,7 +1,9 @@
 package com.example.huynhvinh.applazada_java.view.ThemSanPham;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,16 +51,17 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
     private Bitmap bitmap1 = null,bitmap2 = null,bitmap3 =null;
     private TextView txtLoaiSanPham,txtTenLoaisp;
     private int maloaisp,mathuonghieu;
-    private String tenloaisp = "",convertImage1= "1",convertImage2 = "1",convertImage3 = "1";
+    private String tenloaisp = "",convertImage1 = "1",convertImage2="1",convertImage3="1" ;
     private FButton btnThemGioHang,btnThemSanPham;
     private EditText edtTenSanPham,edtMoTaSanPham,edtGiaSanPham,edtSoLuongSanPham,edtCanNangSanPham;
-    private ByteArrayOutputStream byteArrayOutputStream;
-    private byte[] byteArray;
+    private ByteArrayOutputStream byteArrayOutputStream1,byteArrayOutputStream2,byteArrayOutputStream3;
+    private byte[] byteArray1,byteArray2,byteArray3;
     private SanPham sanPham;
     private LinearLayout lnSanPhamTrong,lnThongTinSanPham,lnThuongHieu;
     private Toolbar toolbar;
     private Spinner spinner;
     private List<String> listTenThuongHieu = new ArrayList<>();
+    private boolean checkPause = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,10 +93,11 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
 
         presenterLogicQuanLyTaiKhoan = new PresenterLogicQuanLyTaiKhoan();
         prensenterLogicThemSanPham = new PrensenterLogicThemSanPham();
-        byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream1 = new ByteArrayOutputStream();
+        byteArrayOutputStream2 = new ByteArrayOutputStream();
+        byteArrayOutputStream3 = new ByteArrayOutputStream();
 
         maloaisp = getIntent().getIntExtra("maloaisp",0);
-        Toast.makeText(this,maloaisp+  "", Toast.LENGTH_SHORT).show();
         if(maloaisp!=0)
         {
             tenloaisp = getIntent().getStringExtra("tenloaisp");
@@ -143,6 +147,52 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if(checkPause==true)
+        {
+            SharedPreferences cachedDangNhap = this.getSharedPreferences("loaisanpham", Context.MODE_PRIVATE);
+            maloaisp = cachedDangNhap.getInt("maloaisanpham",-1);
+            tenloaisp = cachedDangNhap.getString("tenloaisanpham","");
+            txtTenLoaisp.setText(tenloaisp);
+            if(maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
+            {
+                // Sử lý cho spinner của thương hiệu
+                lnThuongHieu.setVisibility(View.VISIBLE);
+                List<ThuongHieu> thuongHieuList = prensenterLogicThemSanPham.LayDanhSachThuongHieu();
+                for (int i=0; i< thuongHieuList.size();i++)
+                {
+                    listTenThuongHieu.add(thuongHieuList.get(i).getTENTHUONGHIEU());
+                }
+
+                ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listTenThuongHieu);
+
+                spinner.setAdapter(arrayAdapter);
+
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        mathuonghieu = thuongHieuList.get(position).getMATHUONGHIEU();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            }else {
+               lnThuongHieu.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+       checkPause = true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         onBackPressed();
         return true;
@@ -150,6 +200,8 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
 
     private void initView() {
         txtTenLoaisp.setText(tenloaisp);
+        imgThemSP2.setEnabled(false);
+        imgThemSP3.setEnabled(false);
     }
 
     @Override
@@ -174,50 +226,63 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                 {
                     Toast.makeText(this, "Bạn phải điền đầy đủ tất cả các mục", Toast.LENGTH_SHORT).show();
                 }else {
-                    DangNhapModel dangNhapModel = new DangNhapModel();
-                    String manv = dangNhapModel.LayCacheMaNVDangNhap(this);
-                    NhanVien nhanVien =  presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(manv);
-                    sanPham = new SanPham();
-                    sanPham.setTENSP(edtTenSanPham.getText().toString());
-                    sanPham.setGIA(Integer.parseInt(edtGiaSanPham.getText().toString()));
-                    sanPham.setTHONGTIN(edtMoTaSanPham.getText().toString());
-                    sanPham.setMALOAISP(maloaisp);
-                    sanPham.setSOLUONG(Integer.parseInt(edtSoLuongSanPham.getText().toString()));
-                    sanPham.setMANV(nhanVien.getMaNV());
-                    if (maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
-                    {
-                        sanPham.setMATHUONGHIEU(mathuonghieu);
+
+                    if(bitmap1==null    ){
+                        Toast.makeText(this, "Bạn không được để trống ảnh !", Toast.LENGTH_SHORT).show();
                     }
-                    if(bitmap1 != null) {
-                        bitmap1.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-                        byteArray = byteArrayOutputStream.toByteArray();
-                        convertImage1 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                    }
-                    if(bitmap2!=null)
-                    {
-                        bitmap2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-                        byteArray = byteArrayOutputStream.toByteArray();
-                        convertImage2 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                    }
-                    if(bitmap3 != null)
-                    {
-                        bitmap3.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-                        byteArray = byteArrayOutputStream.toByteArray();
-                        convertImage3 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                    }
-                    boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham);
-                    if(kiemtra)
-                    {
-                        Toast.makeText(this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT).show();
-                        Intent iQuanLyTaiKhoan = new Intent(this, QuanLyTaiKhoanActivity.class);
-                        startActivity(iQuanLyTaiKhoan);
-                    }else {
-                        Toast.makeText(this, "Thêm sản phẩm thất bại !", Toast.LENGTH_SHORT).show();
+                    else {
+                        DangNhapModel dangNhapModel = new DangNhapModel();
+                        String manv = dangNhapModel.LayCacheMaNVDangNhap(this);
+                        NhanVien nhanVien =  presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(manv);
+                        sanPham = new SanPham();
+                        sanPham.setTENSP(edtTenSanPham.getText().toString());
+                        sanPham.setGIA(Integer.parseInt(edtGiaSanPham.getText().toString()));
+                        sanPham.setTHONGTIN(edtMoTaSanPham.getText().toString());
+                        sanPham.setMALOAISP(maloaisp);
+                        sanPham.setSOLUONG(Integer.parseInt(edtSoLuongSanPham.getText().toString()));
+                        if(nhanVien.getMaNV()==0)
+                        {
+                            sanPham.setMANV(Integer.parseInt(manv));
+                        }else {
+                            sanPham.setMANV(nhanVien.getMaNV());
+                        }
+
+                        if (maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
+                        {
+                            sanPham.setMATHUONGHIEU(mathuonghieu);
+                        }
+                        if(bitmap1 != null) {
+                            bitmap1.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream1);
+                            byteArray1 = byteArrayOutputStream1.toByteArray();
+                            convertImage1 = Base64.encodeToString(byteArray1, Base64.DEFAULT);
+                        }
+                        if(bitmap2!=null)
+                        {
+                            bitmap2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream2);
+                            byteArray2 = byteArrayOutputStream2.toByteArray();
+                            convertImage2 = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+                        }
+                        if(bitmap3 != null)
+                        {
+                            bitmap3.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream3);
+                            byteArray3 = byteArrayOutputStream3.toByteArray();
+                            convertImage3 = Base64.encodeToString(byteArray3, Base64.DEFAULT);
+                        }
+                        boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham);
+                        if(kiemtra)
+                        {
+                            Toast.makeText(this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT).show();
+                            Intent iQuanLyTaiKhoan = new Intent(this, QuanLyTaiKhoanActivity.class);
+                            startActivity(iQuanLyTaiKhoan);
+                        }else {
+                            Toast.makeText(this, "Thêm sản phẩm thất bại !", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 break;
             case R.id.btnThemSanPham:
                 Intent iLoaiSanPham = new Intent(this,DanhSachLoaiSanPhamActivity.class);
+                iLoaiSanPham.putExtra("checkThemSanPham",0);
                 startActivity(iLoaiSanPham);
                 break;
         }
@@ -301,6 +366,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                             e.printStackTrace();
                         }
                         imgThemSP1.setImageBitmap(bitmap1);
+                        imgThemSP2.setEnabled(true);
                         break;
                     case 2:
                         try {
@@ -309,6 +375,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                             e.printStackTrace();
                         }
                         imgThemSP2.setImageBitmap(bitmap2);
+                        imgThemSP3.setEnabled(true);
                         break;
                     case 3:
                         try {

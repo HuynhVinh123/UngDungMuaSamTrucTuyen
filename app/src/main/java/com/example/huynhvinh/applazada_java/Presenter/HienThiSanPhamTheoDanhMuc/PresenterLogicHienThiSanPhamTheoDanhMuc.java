@@ -1,9 +1,9 @@
 package com.example.huynhvinh.applazada_java.Presenter.HienThiSanPhamTheoDanhMuc;
 
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
 
 import com.example.huynhvinh.applazada_java.Presenter.KhuyenMai.PresenterLogicKhuyenMai;
 import com.example.huynhvinh.applazada_java.model.HienThiSanPhamTheoDanhMuc.HienThiSanPhamTheoDanhMucModel;
@@ -107,21 +107,21 @@ public class PresenterLogicHienThiSanPhamTheoDanhMuc implements  IPresenterHienT
 
         if(sanPhamList.size()>0)
         {
-//            if(CheckChonLoc == 0)
-//            {
-//                SapXepSanPhamTheoHangMoiVe(sanPhamList);
-//            }
-//            else if(CheckChonLoc == 1 )
-//            {
-//                SapXepSanPhamTheoHangBanChay(sanPhamList);
-//            }
-//            else if(CheckChonLoc ==2 )
-//            {
-//                SapXepSanPhamTheoGiaTuThapDenCao(sanPhamList);
-//            }
-//            else{
-//                SapXepSanPhamTheoGiaTuCaoDenThap(sanPhamList);
-//            }
+            if(CheckChonLoc == 0)
+            {
+                SapXepSanPhamTheoHangMoiVe(sanPhamList);
+            }
+            else if(CheckChonLoc == 1 )
+            {
+                SapXepSanPhamTheoHangBanChay(sanPhamList);
+            }
+            else if(CheckChonLoc ==2 )
+            {
+                SapXepSanPhamTheoGiaTuThapDenCao(sanPhamList);
+            }
+            else{
+                SapXepSanPhamTheoGiaTuCaoDenThap(sanPhamList);
+            }
         }
         else
         {
