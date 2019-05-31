@@ -429,6 +429,41 @@
                         android:layout_marginRight="12dp"
                         />
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/colorGrayChiTiet"/>
+                <LinearLayout
+                    android:id="@+id/lnSanPhamDaBan"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:gravity="center"
+                    android:background="@drawable/custom_click"
+                    >
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/comment"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sản phẩm đã bán"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginLeft="16dp"
+                        android:gravity="center_vertical"
+                        />
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/arrow"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="12dp"
+                        />
+                </LinearLayout>
+
 
             </LinearLayout>
             <com.example.huynhvinh.applazada_java.CustomView.FButton

@@ -33,6 +33,8 @@ import com.example.huynhvinh.applazada_java.view.QuanLyHoaDon.DonHangActivity;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class ChiTietHoaDonActivity extends AppCompatActivity implements ViewChiTietHoaDon, View.OnClickListener {
 
     Toolbar toolbarCTHD;
@@ -154,12 +156,12 @@ public class ChiTietHoaDonActivity extends AppCompatActivity implements ViewChiT
         Intent iDonHang = new Intent(this, DonHangActivity.class);
         iDonHang.putExtra("trangthai","chokiemduyet");
         startActivity(iDonHang);
-        Toast.makeText(this, "Hủy hóa đơn thành công!", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Hủy hóa đơn thành công!", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override
     public void HuyHoaDonThatBai() {
-        Toast.makeText(this, "Hủy hóa đơn thất bại!", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Hủy hóa đơn thất bại!", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override

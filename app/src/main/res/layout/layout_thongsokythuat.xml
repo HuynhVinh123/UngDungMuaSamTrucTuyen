@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarThongSoKyThuat"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorGreenDarkBackGround"
+            app:titleTextColor="@color/colorWhite"
+            android:theme="@style/ColorForToolbar"
+            >
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_BoNhoTrong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bộ nhớ trong (GB)"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <EditText
+                        android:id="@+id/edt_BoNhoTrong"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=" (GB)"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_KheCamSim"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Khe cắm sim"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <EditText
+                        android:id="@+id/edt_KheSim"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_ChongThamNuoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chống thâm nước"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <EditText
+                        android:id="@+id/edt_ChongThamNuoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_KichThuoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kích thước màn hình"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_KichThuoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        android:inputType="phone"
+                        />
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="(Inches)"
+                        android:layout_marginLeft="8dp"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_HeDieuHanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hệ điều hành"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <EditText
+                        android:id="@+id/edt_HeDieuHanh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_RAM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RAM (GB)"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_RAM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" (GB)"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="8dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_CameraSau"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Camera sau (MP)"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_CameraSau"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=" (MP)"
+                        android:layout_marginLeft="8dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_CameraTruoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Camera trước (MP)"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_CameraTruoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=" (MP)"
+                        android:layout_marginLeft="8dp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_Blutooth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Blutooth"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_Blutooth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_Pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pin (mAh)"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_Pin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=" (mAh)"
+                        android:layout_marginLeft="8dp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/custom_click"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+
+                >
+
+                <TextView
+                    android:id="@+id/txt_BaoHanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bảo hành (tháng)"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+                    <EditText
+                        android:id="@+id/edt_BaoHanh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorWhite"
+                        android:hint="......................."
+                        android:background="@color/colorWhite"
+                        android:inputType="number"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=" (tháng)"
+                        android:layout_marginLeft="8dp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Chú ý:  Nếu không có thông số bạn vui lòng điền không)"
+            android:textColor="@color/colorBlack"
+            android:padding="8dp"
+            android:textSize="12sp"
+            />
+
+        <com.example.huynhvinh.applazada_java.CustomView.FButton
+            android:id="@+id/btn_XacNhan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="Xác nhân "
+            android:textColor="@color/colorWhite"
+            />
+
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

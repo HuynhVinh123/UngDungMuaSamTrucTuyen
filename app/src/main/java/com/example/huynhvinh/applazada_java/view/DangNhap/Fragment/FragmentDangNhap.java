@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.DangNhap_DangKy.PresenterLogicDangKy;
+import com.example.huynhvinh.applazada_java.Presenter.QuanLyTaiKhoan.PresenterLogicQuanLyTaiKhoan;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.NhanVien;
@@ -57,6 +58,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import es.dmoral.toasty.Toasty;
+
 import static android.app.Activity.RESULT_OK;
 
 public class FragmentDangNhap extends Fragment implements FirebaseAuth.AuthStateListener,View.OnClickListener,GoogleApiClient.OnConnectionFailedListener {
@@ -68,6 +71,7 @@ public class FragmentDangNhap extends Fragment implements FirebaseAuth.AuthState
     DangNhapModel dangNhapModel;
     EditText edTenDN,edMatKhau;
     PresenterLogicDangKy presenterLogicDangKy;
+    PresenterLogicQuanLyTaiKhoan presenterLogicQuanLyTaiKhoan;
     TextView txtQuenMatKhauDN;
 
     boolean KiemTraDN  =false;
@@ -91,6 +95,7 @@ public class FragmentDangNhap extends Fragment implements FirebaseAuth.AuthState
         btnDangNhapFacebook = (Button) view.findViewById(R.id.btnDangNhapFacebook);
 
         presenterLogicDangKy = new PresenterLogicDangKy();
+        presenterLogicQuanLyTaiKhoan = new PresenterLogicQuanLyTaiKhoan();
 
        // printKeyHash();
 
@@ -247,9 +252,17 @@ public class FragmentDangNhap extends Fragment implements FirebaseAuth.AuthState
     @Override
     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
         FirebaseUser user   = firebaseAuth.getCurrentUser();        // Lấy user vừa đăng nhập được
+
         if(user!=null) {
             DangNhapModel dangNhapModel = new DangNhapModel();
-            dangNhapModel.CapNhatCachedDangNhap(getActivity(),user.getDisplayName(),user.getEmail(),user.getUid());
+            NhanVien nhanVien1 = presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(user.getUid());
+            if(nhanVien1==null) {
+                nhanVien1.setDiaChi("");
+                dangNhapModel.CapNhatCachedDangNhap(getActivity(), user.getDisplayName(), user.getEmail(), user.getUid(), nhanVien1.getDiaChi());
+            }
+            else {
+                dangNhapModel.CapNhatCachedDangNhap(getActivity(), user.getDisplayName(), user.getEmail(), user.getUid(), nhanVien1.getDiaChi());
+            }
             dangNhapModel.CapNhatCacheKiemTraDangNhap(getActivity(),"0");
 
             boolean kiemtraNV = presenterLogicDangKy.KiemTraNVTonTai(user.getUid());
@@ -265,9 +278,9 @@ public class FragmentDangNhap extends Fragment implements FirebaseAuth.AuthState
                 boolean kiemtra = presenterLogicDangKy.DangKyByGoogkeAndFacebook(nhanVien);
                 if(kiemtra)
                 {
-                    Toast.makeText(getContext(),"Đăng nhập thành công!",Toast.LENGTH_SHORT).show();
+                    Toasty.success(getContext(),"Đăng nhập thành công!",Toast.LENGTH_SHORT,true).show();
                 }else {
-                    Toast.makeText(getContext(),"Đăng nhập thất bại",Toast.LENGTH_SHORT).show();
+                    Toasty.error(getContext(),"Đăng nhập thất bại",Toast.LENGTH_SHORT,true).show();
                 }
 
 
@@ -281,7 +294,7 @@ public class FragmentDangNhap extends Fragment implements FirebaseAuth.AuthState
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-        Toast.makeText(getContext(), "Connection fail !", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Connection fail !", Toast.LENGTH_SHORT,true).show();
 
     }
 /*

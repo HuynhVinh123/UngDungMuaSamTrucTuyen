@@ -6,6 +6,7 @@ import com.example.huynhvinh.applazada_java.ConnectInternet.DownloadJSON;
 import com.example.huynhvinh.applazada_java.ConnectInternet.IPConnect;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.LoaiSanPham;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.SanPham;
+import com.example.huynhvinh.applazada_java.model.Room.object.ThongSoKyThuat;
 import com.example.huynhvinh.applazada_java.model.TrangChu.XuLyMenu.XuLyJSONMenu;
 
 import org.json.JSONException;
@@ -61,6 +62,8 @@ public class ThemSanPhamModel {
     }
 
 
+
+
     public boolean ThemSanPham(String convertImage1, String convertImage2, String convertImage3, SanPham sanPham){
         boolean ketqua = false;
         String dataJSON = "";
@@ -113,10 +116,20 @@ public class ThemSanPhamModel {
         hashMaLoaiSP.put("maloaisp",String.valueOf(sanPham.getMALOAISP()));
 
         HashMap<String,String> hashMaThuongHieu = new HashMap<>();
-        hashMaThuongHieu.put("mathuonghieu",String.valueOf(sanPham.getMATHUONGHIEU()));
+        if(sanPham.getMATHUONGHIEU() == 0)
+        {
+
+            hashMaThuongHieu.put("mathuonghieu",String.valueOf(18));
+        }
+        else {
+            hashMaThuongHieu.put("mathuonghieu",String.valueOf(sanPham.getMATHUONGHIEU()));
+        }
 
         HashMap<String,String> hashMaNV = new HashMap<>();
         hashMaNV.put("manv",String.valueOf(sanPham.getMANV()));
+
+
+
 
         attrs.add(hashMaLoaiCha);
         attrs.add(hashImageName1);
@@ -134,12 +147,12 @@ public class ThemSanPhamModel {
         attrs.add(hashMaNV);
         attrs.add(hashMaThuongHieu);
 
-
         DownloadJSON downloadJSON =  new DownloadJSON(duongdan,attrs);
         downloadJSON.execute();
 
         try {
             dataJSON = downloadJSON.get();
+
             JSONObject object = new JSONObject(dataJSON);
             String kiemtra = object.getString("ketqua");
             if(kiemtra.equals("true"))
@@ -158,6 +171,90 @@ public class ThemSanPhamModel {
         }
 
         return ketqua;
+    }
 
+
+    public void themChiTietSanPham(List<ThongSoKyThuat> thongSoKyThuatList,int masp){
+        String dataJSON = "";
+        List<HashMap<String,String>> attrs = new ArrayList<>();
+        // Lấy dữ liệu bằng phương thức POST
+        String duongdan = IPConnect.IP ;
+
+        HashMap<String,String> hashHam = new HashMap<>();
+        hashHam.put("ham","ThemChiTietSanPham");
+
+        HashMap<String,String> hashMasp = new HashMap<>();
+        hashMasp.put("masp",String.valueOf(masp));
+
+        // Parse list sản phẩm về dạng chuỗi Json
+        String chuoijson = "{\"DANHSACHTHONGSO\" :[ " ;
+
+        for(int i=0; i< thongSoKyThuatList.size();i++)
+        {
+            chuoijson += "{";
+
+            chuoijson += "\"tenchitiet\" : \"" + thongSoKyThuatList.get(i).getTenchitiet() + "\",";
+            chuoijson += "\"giatri\" : \"" + thongSoKyThuatList.get(i).getGiatri() + "\"";
+
+            if(i==thongSoKyThuatList.size()-1) {
+                chuoijson += "}";
+            }else{
+                chuoijson += "},";
+            }
+        }
+
+        chuoijson+="]}";
+
+        HashMap<String,String> hashDanhSachThongSo = new HashMap<>();
+        hashDanhSachThongSo.put("danhsachthongso",chuoijson);
+
+        attrs.add(hashHam);
+        attrs.add(hashDanhSachThongSo);
+        attrs.add(hashMasp);
+
+        DownloadJSON downloadJSON =  new DownloadJSON(duongdan,attrs);
+        downloadJSON.execute();
+
+        try {
+            dataJSON = downloadJSON.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public int layMaSanPhamMoiNhat(){
+        String dataJSON = "";
+        int masp =0;
+
+        List<HashMap<String,String>> attrs = new ArrayList<>();
+        // Lấy dữ liệu bằng phương thức POST
+        String duongdan = IPConnect.IP ;
+
+        HashMap<String,String> hashHam = new HashMap<>();
+        hashHam.put("ham","LayMaSanPhamMoiNhat");
+
+        attrs.add(hashHam);
+
+        DownloadJSON downloadJSON =  new DownloadJSON(duongdan,attrs);
+        downloadJSON.execute();
+
+        try {
+
+            dataJSON = downloadJSON.get();
+            JSONObject object = new JSONObject(dataJSON);
+            masp = object.getInt("ketqua");
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return  masp;
     }
 }

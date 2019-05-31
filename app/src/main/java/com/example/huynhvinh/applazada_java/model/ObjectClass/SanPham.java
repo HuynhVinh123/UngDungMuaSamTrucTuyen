@@ -1,8 +1,11 @@
 package com.example.huynhvinh.applazada_java.model.ObjectClass;
 
+import com.example.huynhvinh.applazada_java.model.Room.object.ThongSoKyThuat;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class SanPham {
+public class SanPham implements Serializable {
     int MASP;
     int GIA;
     int SOLUONG;
@@ -21,6 +24,16 @@ public class SanPham {
     ChiTietKhuyenMai chiTietKhuyenMai;
 
     List<ChiTietSanPham> chiTietSanPhamList;
+
+    List<ThongSoKyThuat> thongSoKyThuatList;
+
+    public List<ThongSoKyThuat> getThongSoKyThuatList() {
+        return thongSoKyThuatList;
+    }
+
+    public void setThongSoKyThuatList(List<ThongSoKyThuat> thongSoKyThuatList) {
+        this.thongSoKyThuatList = thongSoKyThuatList;
+    }
 
     public ChiTietKhuyenMai getChiTietKhuyenMai() {
         return chiTietKhuyenMai;

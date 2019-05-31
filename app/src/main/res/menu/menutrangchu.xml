@@ -53,9 +53,9 @@
                 android:icon="@drawable/ic_content_paste_black_24dp"
                 />
             <item
-                android:id="@+id/itCaiDat"
-                android:title="Cài đặt"
-                android:icon="@drawable/ic_settings_black_24dp"
+                android:id="@+id/itDaXem"
+                android:title="Sản phẩm đã xem"
+                android:icon="@drawable/ic24dp_eye"
                 />
 
             <item

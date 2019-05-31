@@ -26,6 +26,8 @@ import com.example.huynhvinh.applazada_java.model.ObjectClass.NhanVien;
 import com.example.huynhvinh.applazada_java.view.DangNhap.DangNhapActivity;
 import com.example.huynhvinh.applazada_java.view.DangNhap.ViewDangKy;
 
+import es.dmoral.toasty.Toasty;
+
 public class FragmentDangKy extends Fragment implements ViewDangKy,View.OnClickListener,View.OnFocusChangeListener {
 
     PresenterLogicDangKy presenterLogicDangKy;
@@ -81,12 +83,12 @@ public class FragmentDangKy extends Fragment implements ViewDangKy,View.OnClickL
     public void DangKyThanhcong() {
         Intent iDangNhap = new Intent(getActivity(), DangNhapActivity.class);
         startActivity(iDangNhap);
-        Toast.makeText(getContext(), "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+        Toasty.success(getContext(), "Đăng ký thành công!", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override
     public void DangKyThatBai() {
-        Toast.makeText(getContext(), "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Đăng ký thất bại!", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override
@@ -143,7 +145,7 @@ public class FragmentDangKy extends Fragment implements ViewDangKy,View.OnClickL
             {
                 presenterLogicDangKy.ThucHienDangKy(nhanVien);
             }else {
-                Toast.makeText(getActivity(), "Tên đăng nhập đã tồn tại !", Toast.LENGTH_SHORT).show();
+                Toasty.warning(getActivity(), "Tên đăng nhập đã tồn tại !", Toast.LENGTH_SHORT,true).show();
             }
 
         }

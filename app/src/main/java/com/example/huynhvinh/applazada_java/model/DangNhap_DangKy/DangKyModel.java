@@ -22,7 +22,7 @@ public class DangKyModel {
         boolean kiemtra = true;
 
         // Lấy dữ liệu bằng phương thức POST
-        String duongdan = "http://" + IPConnect.IP +"loaisanpham.php";
+        String duongdan =IPConnect.IP;
 
         HashMap<String,String> hashTenNV = new HashMap<>();
         hashTenNV.put("tennv",nhanVien.getTenNV());
@@ -66,6 +66,7 @@ public class DangKyModel {
 
         try {
             String dulieuJSON = downloadJSON.get();
+            Log.d("kiemtra",dulieuJSON);
             try {
                 JSONObject jsonObject = new JSONObject(dulieuJSON);
                 String ketqua = jsonObject.getString("ketqua");

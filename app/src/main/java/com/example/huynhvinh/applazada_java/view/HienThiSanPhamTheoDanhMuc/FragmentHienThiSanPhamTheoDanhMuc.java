@@ -280,9 +280,9 @@ public class FragmentHienThiSanPhamTheoDanhMuc extends Fragment implements ViewH
                         }
                     }
                 });
+
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
                 break;
         }
     }

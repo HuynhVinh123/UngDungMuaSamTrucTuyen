@@ -27,6 +27,8 @@ import com.example.huynhvinh.applazada_java.view.TrangChu.TrangChuActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class ThanhToanActivity extends AppCompatActivity implements View.OnClickListener,ViewThanhToan {
 
     Toolbar toolbarThanhToan;
@@ -34,7 +36,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     ImageButton imNhanTienKhiGiaoHang,imChuyenKhoan;
     TextView txtNhanTienKhiGiaoHang,txtChuyenKhoan;
     Button btnThanhToan;
-    CheckBox cbThoaThuan;
+    CheckBox cbThoaThuan,cb_giaohang;
     PresenterLogicThanhToan presenterLogicThanhToan;
     List<ChiTietHoaDon> chiTietHoaDonList = new ArrayList<>();
     int giatien;
@@ -46,6 +48,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
 
         setContentView(R.layout.layout_thanhtoan);
 
+        cb_giaohang = (CheckBox) findViewById(R.id.cb_giaohang);
         edTenNguoiNhan = (EditText) findViewById(R.id.edTenNguoiNhan);
         edDiaChi = (EditText) findViewById(R.id.edDiaChi);
         edSoDT = (EditText) findViewById(R.id.edSoDT);
@@ -71,6 +74,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         initView();
 
         btnThanhToan.setOnClickListener(this);
+        imNhanTienKhiGiaoHang.setOnClickListener(this);
 
 
     }
@@ -79,10 +83,15 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         DangNhapModel dangNhapModel = new DangNhapModel();
         String tennguoinhan = dangNhapModel.LayCachedDangNhap(this);
         String sodt = dangNhapModel.LayCacheSoDTDangNhap(this);
-
+        String diachi = dangNhapModel.LayCacheDiaChiDangNhap(this);
         manguoinhan = dangNhapModel.LayCacheMaNVDangNhap(this);
 
         edTenNguoiNhan.setText(tennguoinhan);
+        Log.d("kiemtra",diachi);
+        if(!diachi.equals("null"))
+        {
+            edDiaChi.setText(diachi);
+        }
 
         Boolean kiemtra = Patterns.EMAIL_ADDRESS.matcher(sodt).matches();
         if(kiemtra)
@@ -133,25 +142,26 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                         hoaDon.setChiTietHoaDonList(chiTietHoaDonList);
                         presenterLogicThanhToan.ThemHoaDon(hoaDon);
                     }else {
-                        Toast.makeText(this,"Bạn chưa nhấn chọn vào ô thỏa thuận !", Toast.LENGTH_SHORT).show();
+                        Toasty.warning(this,"Bạn chưa nhấn chọn vào ô thỏa thuận !", Toast.LENGTH_SHORT,true).show();
                     }
                 }else{
-                    Toast.makeText(this, "Bạn chưa nhập đầy đủ các thông tin !", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, "Bạn chưa nhập đầy đủ các thông tin !", Toast.LENGTH_SHORT,true).show();
                 }
                 break;
+
         }
     }
 
     @Override
     public void DatHangThanhCong() {
-        Toast.makeText(this, "Đặt hàng thành công !", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Đặt hàng thành công !", Toast.LENGTH_SHORT,true).show();
         Intent iTrangChu = new Intent(this, TrangChuActivity.class);
         startActivity(iTrangChu);
     }
 
     @Override
     public void DatHangThatBai() {
-        Toast.makeText(this, "Đặt hàng thất bại !", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Đặt hàng thất bại !", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override

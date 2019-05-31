@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.huynhvinh.applazada_java.Presenter.QuenMatKhau.PresenterLogicQuenMatKhau;
 import com.example.huynhvinh.applazada_java.R;
 
+import es.dmoral.toasty.Toasty;
+
 public class QuenMatKhauActivity extends AppCompatActivity implements View.OnClickListener,ViewQuenMatKhau {
 
     PresenterLogicQuenMatKhau presenterLogicQuenMatKhau;
@@ -56,11 +58,11 @@ public class QuenMatKhauActivity extends AppCompatActivity implements View.OnCli
                 presenterLogicQuenMatKhau = new PresenterLogicQuenMatKhau(this::EmailHopLe);
                 presenterLogicQuenMatKhau.KiemTraEMail(Email);
             }else {
-                Toast.makeText(this, "Bạn nhập chưa đúng email !", Toast.LENGTH_SHORT).show();
+                Toasty.warning(this, "Bạn nhập chưa đúng email !", Toast.LENGTH_SHORT,true).show();
             }
         }
         else {
-            Toast.makeText(this, "Bạn không được để trống !", Toast.LENGTH_SHORT).show();
+            Toasty.warning(this, "Bạn không được để trống !", Toast.LENGTH_SHORT).show();
         }
     }
 

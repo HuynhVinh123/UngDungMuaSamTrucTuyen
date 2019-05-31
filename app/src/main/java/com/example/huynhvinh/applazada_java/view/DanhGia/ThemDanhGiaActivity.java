@@ -33,6 +33,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class ThemDanhGiaActivity extends AppCompatActivity implements RatingBar.OnRatingBarChangeListener, ViewDanhgia, View.OnClickListener {
 
     TextInputLayout input_edTieuDe, input_edNoiDung;
@@ -100,12 +102,12 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements RatingBar.
 
     @Override
     public void DanhGiaThanhCong() {
-        Toast.makeText(this, "Đánh giá thành công !", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Đánh giá thành công !", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override
     public void DanhGiaThatBai() {
-        Toast.makeText(this, "Bạn không thể đánh giá sản phẩm này !", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Bạn không thể đánh giá sản phẩm này !", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override

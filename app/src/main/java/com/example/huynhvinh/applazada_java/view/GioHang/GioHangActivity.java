@@ -33,6 +33,8 @@ import com.example.huynhvinh.applazada_java.view.ThanhToan.ThanhToanActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class GioHangActivity extends AppCompatActivity implements ViewGioHang, View.OnClickListener {
 
     LinearLayout lnGiamGia;
@@ -148,7 +150,7 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
 
                     }
                     else {
-                        Toast.makeText(this, "Bạn chưa có sản phẩm nào trong giỏ hàng!", Toast.LENGTH_SHORT).show();
+                        Toasty.warning(this, "Bạn chưa có sản phẩm nào trong giỏ hàng!", Toast.LENGTH_SHORT,true).show();
                     }
                 }else{
                     Intent iDangNhap = new Intent(this, DangNhapActivity.class);
@@ -182,12 +184,12 @@ public class GioHangActivity extends AppCompatActivity implements ViewGioHang, V
                                 txtTongTien.setText(gia + " VNĐ");
                             }
                             else {
-                                Toast.makeText(this, "Hóa đơn của bạn tối thiểu phải " + codeKhuyenMai.getGiaTriDonHangMin() + " VNĐ", Toast.LENGTH_SHORT).show();
+                                Toasty.warning(this, "Hóa đơn của bạn tối thiểu phải " + codeKhuyenMai.getGiaTriDonHangMin() + " VNĐ", Toast.LENGTH_SHORT,true).show();
                             }
                         }
                     }
                 }else {
-                    Toast.makeText(this, "Bạn chưa nhập mã code !", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, "Bạn chưa nhập mã code !", Toast.LENGTH_SHORT,true).show();
                 }
                 break;
         }

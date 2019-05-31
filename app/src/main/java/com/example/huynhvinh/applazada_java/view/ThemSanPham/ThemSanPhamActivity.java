@@ -1,5 +1,7 @@
 package com.example.huynhvinh.applazada_java.view.ThemSanPham;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,12 +36,16 @@ import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.NhanVien;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.SanPham;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.ThuongHieu;
+import com.example.huynhvinh.applazada_java.model.Room.object.ThongSoKyThuat;
+import com.example.huynhvinh.applazada_java.model.Room.viewmodel.ThongSoKyThuatViewModel;
 import com.example.huynhvinh.applazada_java.view.QuanLyTaiKhoan.QuanLyTaiKhoanActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class ThemSanPhamActivity extends AppCompatActivity implements View.OnClickListener {
@@ -57,7 +63,8 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
     private ByteArrayOutputStream byteArrayOutputStream1,byteArrayOutputStream2,byteArrayOutputStream3;
     private byte[] byteArray1,byteArray2,byteArray3;
     private SanPham sanPham;
-    private LinearLayout lnSanPhamTrong,lnThongTinSanPham,lnThuongHieu;
+    private LinearLayout lnSanPhamTrong,lnThongTinSanPham,lnThuongHieu,lnThongSoKyThuat,lnLoaiSanPham;
+    private ThongSoKyThuatViewModel thongSoKyThuatViewModel;
     private Toolbar toolbar;
     private Spinner spinner;
     private List<String> listTenThuongHieu = new ArrayList<>();
@@ -81,6 +88,8 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
         edtCanNangSanPham = (EditText) findViewById(R.id.edtCanNang);
         lnSanPhamTrong = (LinearLayout) findViewById(R.id.linearThongTinSanPhamTrong);
         lnThongTinSanPham = (LinearLayout) findViewById(R.id.linearThongTinSanPham);
+        lnThongSoKyThuat = (LinearLayout) findViewById(R.id.lnThongSoKyThuatThemSanPham);
+        lnLoaiSanPham = (LinearLayout) findViewById(R.id.lnLoaiSanPham);
         btnThemSanPham = (FButton) findViewById(R.id.btnThemSanPham);
         toolbar = (Toolbar) findViewById(R.id.toolbarThemSanPham);
         lnThuongHieu = (LinearLayout) findViewById(R.id.lnThuongHieuThemSanPham);
@@ -107,7 +116,9 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
             {
                 // Sử lý cho spinner của thương hiệu
                 lnThuongHieu.setVisibility(View.VISIBLE);
+                lnThongSoKyThuat.setVisibility(View.VISIBLE);
                 List<ThuongHieu> thuongHieuList = prensenterLogicThemSanPham.LayDanhSachThuongHieu();
+                listTenThuongHieu.clear();
                 for (int i=0; i< thuongHieuList.size();i++)
                 {
                     listTenThuongHieu.add(thuongHieuList.get(i).getTENTHUONGHIEU());
@@ -122,7 +133,6 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         mathuonghieu = thuongHieuList.get(position).getMATHUONGHIEU();
                     }
-
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -144,6 +154,8 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
         btnThemGioHang.setOnClickListener(this);
         btnThemSanPham.setOnClickListener(this);
         lnThuongHieu.setOnClickListener(this);
+        lnThongSoKyThuat.setOnClickListener(this);
+        lnLoaiSanPham.setOnClickListener(this);
     }
 
     @Override
@@ -159,6 +171,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
             {
                 // Sử lý cho spinner của thương hiệu
                 lnThuongHieu.setVisibility(View.VISIBLE);
+                lnThongSoKyThuat.setVisibility(View.VISIBLE);
                 List<ThuongHieu> thuongHieuList = prensenterLogicThemSanPham.LayDanhSachThuongHieu();
                 for (int i=0; i< thuongHieuList.size();i++)
                 {
@@ -182,6 +195,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                 });
             }else {
                lnThuongHieu.setVisibility(View.GONE);
+               lnThongSoKyThuat.setVisibility(View.GONE);
             }
         }
     }
@@ -217,66 +231,81 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
             case R.id.imgThemSanPham3:
                 showDialogForImage(3);
                 break;
-            case R.id.txtLoaiSanPham:
+            case R.id.lnLoaiSanPham:
                 Intent intent = new Intent(this,DanhSachLoaiSanPhamActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btnThemGioHang:
                 if (edtTenSanPham.getText().toString().trim().equals("") || edtMoTaSanPham.getText().toString().trim().equals("") || edtGiaSanPham.getText().toString().trim().equals("") || edtSoLuongSanPham.getText().toString().trim().equals("") || edtCanNangSanPham.getText().toString().trim().equals("") )
                 {
-                    Toast.makeText(this, "Bạn phải điền đầy đủ tất cả các mục", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, "Bạn phải điền đầy đủ tất cả các mục", Toast.LENGTH_SHORT,true).show();
                 }else {
 
                     if(bitmap1==null    ){
-                        Toast.makeText(this, "Bạn không được để trống ảnh !", Toast.LENGTH_SHORT).show();
+                        Toasty.warning(this, "Bạn không được để trống ảnh !", Toast.LENGTH_SHORT,true).show();
                     }
                     else {
                         DangNhapModel dangNhapModel = new DangNhapModel();
                         String manv = dangNhapModel.LayCacheMaNVDangNhap(this);
                         NhanVien nhanVien =  presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(manv);
                         sanPham = new SanPham();
-                        sanPham.setTENSP(edtTenSanPham.getText().toString());
-                        sanPham.setGIA(Integer.parseInt(edtGiaSanPham.getText().toString()));
-                        sanPham.setTHONGTIN(edtMoTaSanPham.getText().toString());
-                        sanPham.setMALOAISP(maloaisp);
-                        sanPham.setSOLUONG(Integer.parseInt(edtSoLuongSanPham.getText().toString()));
-                        if(nhanVien.getMaNV()==0)
-                        {
-                            sanPham.setMANV(Integer.parseInt(manv));
-                        }else {
-                            sanPham.setMANV(nhanVien.getMaNV());
-                        }
+                        // get Thông sô kỹ thuật
+                        thongSoKyThuatViewModel = ViewModelProviders.of(this).get(ThongSoKyThuatViewModel.class);
+                        thongSoKyThuatViewModel.layDanhSachThongSo().observe(ThemSanPhamActivity.this, new Observer<List<ThongSoKyThuat>>() {
+                            @Override
+                            public void onChanged(@Nullable List<ThongSoKyThuat> thongSoKyThuats) {
+                                Log.d("thongsokythuat",thongSoKyThuats.size() + "");
+                                if(thongSoKyThuats.size()>0)
+                                {
+                                    sanPham.setThongSoKyThuatList(thongSoKyThuats);
+                                    sanPham.setTENSP(edtTenSanPham.getText().toString());
+                                    sanPham.setGIA(Integer.parseInt(edtGiaSanPham.getText().toString()));
+                                    sanPham.setTHONGTIN(edtMoTaSanPham.getText().toString());
+                                    sanPham.setMALOAISP(maloaisp);
+                                    sanPham.setSOLUONG(Integer.parseInt(edtSoLuongSanPham.getText().toString()));
+                                    if(nhanVien.getMaNV()==0)
+                                    {
+                                        sanPham.setMANV(Integer.parseInt(manv));
+                                    }else {
+                                        sanPham.setMANV(nhanVien.getMaNV());
+                                    }
 
-                        if (maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
-                        {
-                            sanPham.setMATHUONGHIEU(mathuonghieu);
-                        }
-                        if(bitmap1 != null) {
-                            bitmap1.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream1);
-                            byteArray1 = byteArrayOutputStream1.toByteArray();
-                            convertImage1 = Base64.encodeToString(byteArray1, Base64.DEFAULT);
-                        }
-                        if(bitmap2!=null)
-                        {
-                            bitmap2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream2);
-                            byteArray2 = byteArrayOutputStream2.toByteArray();
-                            convertImage2 = Base64.encodeToString(byteArray2, Base64.DEFAULT);
-                        }
-                        if(bitmap3 != null)
-                        {
-                            bitmap3.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream3);
-                            byteArray3 = byteArrayOutputStream3.toByteArray();
-                            convertImage3 = Base64.encodeToString(byteArray3, Base64.DEFAULT);
-                        }
-                        boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham);
-                        if(kiemtra)
-                        {
-                            Toast.makeText(this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT).show();
-                            Intent iQuanLyTaiKhoan = new Intent(this, QuanLyTaiKhoanActivity.class);
-                            startActivity(iQuanLyTaiKhoan);
-                        }else {
-                            Toast.makeText(this, "Thêm sản phẩm thất bại !", Toast.LENGTH_SHORT).show();
-                        }
+                                    if (maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
+                                    {
+                                        sanPham.setMATHUONGHIEU(mathuonghieu);
+                                    }
+                                    if(bitmap1 != null) {
+                                        bitmap1.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream1);
+                                        byteArray1 = byteArrayOutputStream1.toByteArray();
+                                        convertImage1 = Base64.encodeToString(byteArray1, Base64.DEFAULT);
+                                    }
+                                    if(bitmap2!=null)
+                                    {
+                                        bitmap2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream2);
+                                        byteArray2 = byteArrayOutputStream2.toByteArray();
+                                        convertImage2 = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+                                    }
+                                    if(bitmap3 != null)
+                                    {
+                                        bitmap3.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream3);
+                                        byteArray3 = byteArrayOutputStream3.toByteArray();
+                                        convertImage3 = Base64.encodeToString(byteArray3, Base64.DEFAULT);
+                                    }
+
+                                    boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,sanPham.getThongSoKyThuatList());
+                                    if(kiemtra)
+                                    {
+                                        Toasty.success(ThemSanPhamActivity.this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT,true).show();
+                                        thongSoKyThuatViewModel.xoaThongSo();
+                                        Intent iQuanLyTaiKhoan = new Intent(ThemSanPhamActivity.this, QuanLyTaiKhoanActivity.class);
+                                        startActivity(iQuanLyTaiKhoan);
+                                    }else {
+                                        Toasty.error(ThemSanPhamActivity.this, "Thêm sản phẩm thất bại !", Toast.LENGTH_SHORT,true).show();
+                                    }
+                                }
+                            }
+                        });
+
                     }
                 }
                 break;
@@ -284,6 +313,13 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                 Intent iLoaiSanPham = new Intent(this,DanhSachLoaiSanPhamActivity.class);
                 iLoaiSanPham.putExtra("checkThemSanPham",0);
                 startActivity(iLoaiSanPham);
+                break;
+            case R.id.lnThongSoKyThuatThemSanPham:
+                Intent intent1 = new Intent(this,ThongSoKyThuatActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("sanpham",sanPham);
+               // intent1.putExtra("")
+                startActivity(intent1);
                 break;
         }
     }
@@ -350,7 +386,6 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(this, requestCode + "", Toast.LENGTH_SHORT).show();
         if (requestCode==GALLERY)
         {
             if(data!=null)

@@ -29,4 +29,8 @@ public class SanPhamViewModel extends AndroidViewModel {
             return listLiveData;
     }
 
+    public  void xoaSanPham(){
+        sanPhamRepository.deleteAllProduct();
+    }
+
 }

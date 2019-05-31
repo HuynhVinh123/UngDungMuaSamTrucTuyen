@@ -39,6 +39,8 @@ import com.example.huynhvinh.applazada_java.view.TrangChu.TrangChuActivity;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class HienThiSanPhamTheoDanhMucActivity extends AppCompatActivity implements ViewHienThiSanPhamTheoDanhMuc,View.OnClickListener,ILoadMore{
 
     PresenterLogicHienThiSanPhamTheoDanhMuc presenterLogicHienThiSanPhamTheoDanhMuc;
@@ -109,7 +111,7 @@ public class HienThiSanPhamTheoDanhMucActivity extends AppCompatActivity impleme
 
     @Override
     public void LoiHienThiDanhSachSanPham() {
-        Toast.makeText(this, "Lỗi !", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Lỗi !", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override

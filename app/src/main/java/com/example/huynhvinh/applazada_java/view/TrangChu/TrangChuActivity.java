@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.example.huynhvinh.applazada_java.Adapter.ViewPagerAdapter;
 import com.example.huynhvinh.applazada_java.ConnectInternet.IPConnect;
 import com.example.huynhvinh.applazada_java.Presenter.ChiTietSanPham.PresenterLogicChiTietSanPham;
 import com.example.huynhvinh.applazada_java.Presenter.DangNhap_DangKy.PresenterLogicDangKy;
+import com.example.huynhvinh.applazada_java.Presenter.QuanLyTaiKhoan.PresenterLogicQuanLyTaiKhoan;
 import com.example.huynhvinh.applazada_java.Presenter.TrangChu.XuLyMenu.PresenterLogicXuLyMenu;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
@@ -39,6 +41,7 @@ import com.example.huynhvinh.applazada_java.view.DangNhap.DangNhapActivity;
 import com.example.huynhvinh.applazada_java.view.GioHang.GioHangActivity;
 import com.example.huynhvinh.applazada_java.view.QuanLyHoaDon.QuanLyHoaDonActivity;
 import com.example.huynhvinh.applazada_java.view.QuanLyTaiKhoan.QuanLyTaiKhoanActivity;
+import com.example.huynhvinh.applazada_java.view.SanPhamDaXem.SanPhamDaXemActivity;
 import com.example.huynhvinh.applazada_java.view.SanPhamYeuThich.SanPhamYeuThichActivity;
 import com.example.huynhvinh.applazada_java.view.TimKiem.TimKiemActivity;
 import com.facebook.AccessToken;
@@ -63,9 +66,11 @@ import java.net.PortUnreachableException;
 import java.net.URL;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class TrangChuActivity extends AppCompatActivity implements View.OnClickListener,ViewXuLyMenu {
 
-    public static final String SERER = "http://192.168.1.125:8080/weblazada/webadmin";
+    public static final String SERER = "http://10.38.218.93:8080/weblazada/webadmin";
 
     Button btnTimKiem;
     Toolbar toolbar;
@@ -80,6 +85,7 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
     TextView txtGioHang;
     boolean onPause = false;
     PresenterLogicXuLyMenu presenterLogicXuLyMenu;
+    PresenterLogicQuanLyTaiKhoan presenterLogicQuanLyTaiKhoan;
     String tennguoidung,emailFaceBook,id;
     AccessToken accessToken;
     PresenterLogicDangKy presenterLogicDangKy;
@@ -104,6 +110,8 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
         accessToken = presenterLogicXuLyMenu.LayTenNguoiDungFacebook();
 
         presenterLogicXuLyMenu.LayDanhSachMenu();
+
+        presenterLogicQuanLyTaiKhoan = new PresenterLogicQuanLyTaiKhoan();
 
         dangNhapModel = new DangNhapModel();
 
@@ -131,9 +139,9 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
         drawerToggle.syncState();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
+
         getMenuInflater().inflate(R.menu.menutrangchu,menu);
 
         this.menu = menu;
@@ -144,6 +152,7 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
 
 
         final String tennv = dangNhapModel.LayCachedDangNhap(this);
+
         if(!tennv.equals(""))
         {
             itemDangNhap.setTitle(tennv);
@@ -180,9 +189,6 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                     try {
                         tennguoidung = object.getString("name");
                         emailFaceBook = object.getString("email");
-                        // Set Cache cho Sharedeference
-                        dangNhapModel.CapNhatCachedDangNhap(TrangChuActivity.this,tennguoidung,emailFaceBook,object.getString("id"));
-                        dangNhapModel.CapNhatCacheKiemTraDangNhap(TrangChuActivity.this,"1");
 
                         boolean kiemtraNV = presenterLogicDangKy.KiemTraNVTonTai(object.getString("id"));
 
@@ -202,6 +208,12 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                                 Toast.makeText(TrangChuActivity.this,"Đăng nhập thất bại",Toast.LENGTH_SHORT).show();
                             }
                         }
+
+                        NhanVien nv = presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(object.getString("id"));
+
+                        // Set Cache cho Sharedeference
+                        dangNhapModel.CapNhatCachedDangNhap(TrangChuActivity.this,tennguoidung,emailFaceBook,object.getString("id"),nv.getDiaChi());
+                        dangNhapModel.CapNhatCacheKiemTraDangNhap(TrangChuActivity.this,"1");
 
                         MenuItem menuItem = menu.findItem(R.id.itDangNhap);
                         menuItem.setTitle(tennguoidung);
@@ -241,22 +253,20 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.itDangXuat:
-
                 if(accessToken!=null)
                 {
-                    LoginManager.getInstance().logOut();
-                    dangNhapModel.CapNhatCachedDangNhap(this,"","","");
-                    this.menu.clear();
-                    this.onCreateOptionsMenu(this.menu);
-                }
-
-                if(!dangNhapModel.LayCachedDangNhap(this).equals(""))
-                {
-                    dangNhapModel.CapNhatCachedDangNhap(this,"","","");
-                    this.menu.clear();
-                    this.onCreateOptionsMenu(this.menu);
-                }
-                break;
+            LoginManager.getInstance().logOut();
+            dangNhapModel.CapNhatCachedDangNhap(this,"","","","");
+            this.menu.clear();
+            this.onCreateOptionsMenu(this.menu);
+        }
+            if(!dangNhapModel.LayCachedDangNhap(this).equals(""))
+            {
+                dangNhapModel.CapNhatCachedDangNhap(this,"","","","");
+                this.menu.clear();
+                this.onCreateOptionsMenu(this.menu);
+            }
+            break;
             case  R.id.itMongMuon:
                 Intent iYeuThich = new Intent(this, SanPhamYeuThichActivity.class);
                 startActivity(iYeuThich);
@@ -283,6 +293,10 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(iQuanLyDonHang);
                 }
                 break;
+            case R.id.itDaXem:
+                Intent iDaXem = new Intent(this, SanPhamDaXemActivity.class);
+                startActivity(iDaXem);
+                break;
         }
 
         return true;
@@ -290,7 +304,6 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-
         int id = v.getId();
         switch (id)
         {
@@ -306,7 +319,6 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                 try {
                     startActivity(intent);
                 }
-
                 catch(Exception e) {
                     Toast.makeText(this,"Oups!Can't open Facebook messenger right now. Please try again later.", Toast.LENGTH_SHORT).show();
                 }

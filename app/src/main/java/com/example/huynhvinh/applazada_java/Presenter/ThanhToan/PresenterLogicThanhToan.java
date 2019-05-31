@@ -29,6 +29,7 @@ public class PresenterLogicThanhToan implements IPresenterThanhToan {
         boolean kiemtra = thanhToanModel.ThemHoaDon(hoaDon);
         if(kiemtra)
         {
+            thanhToanModel.CapNhatSoLuongSanPham(hoaDon);
             viewThanhToan.DatHangThanhCong();
             int dem = sanPhamList.size();
             for(int i=0;i<dem;i++)

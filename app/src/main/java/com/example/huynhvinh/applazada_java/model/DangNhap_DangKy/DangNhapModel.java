@@ -65,6 +65,7 @@ public class DangNhapModel {
 
         try {
             String dulieuJSON = downloadJSON.get();
+
             JSONObject jsonObject = new JSONObject(dulieuJSON);
             String ketqua = jsonObject.getString("ketqua");
             if(ketqua.equals("true"))
@@ -72,8 +73,10 @@ public class DangNhapModel {
                 String tennv = jsonObject.getString("tennv");
                 String sodt = jsonObject.getString("sodt");
                 String manv = jsonObject.getString("manv");
+                String diachi = jsonObject.getString("diachi");
+                Log.d("kiemtra",diachi);
                 kiemtra =true;
-                CapNhatCachedDangNhap(context,tennv,sodt,manv);
+                CapNhatCachedDangNhap(context,tennv,sodt,manv,diachi);
                 CapNhatCacheKiemTraDangNhap(context,"3");
             }
             else {
@@ -106,14 +109,22 @@ public class DangNhapModel {
         return  keyCheck;
     }
 
-    public void CapNhatCachedDangNhap(Context context,String tennv,String sodt,String manv)
+    public void CapNhatCachedDangNhap(Context context,String tennv,String sodt,String manv,String diachi)
     {
         SharedPreferences cachedDangNhap = context.getSharedPreferences("dangnhap",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = cachedDangNhap.edit();
         editor.putString("tennv",tennv);
         editor.putString("sodt",sodt);
         editor.putString("manv",manv);
+        editor.putString("diachi",diachi);
+
         editor.commit();
+    }
+
+    public String LayCacheDiaChiDangNhap(Context context){
+        SharedPreferences cachedDangNhap = context.getSharedPreferences("dangnhap",Context.MODE_PRIVATE);
+        String diachi = cachedDangNhap.getString("diachi","");
+        return diachi;
     }
 
     public String LayCachedDangNhap(Context context){

@@ -41,6 +41,14 @@
         <activity android:name=".view.TimKiem.TimKiemActivity"/>
         <activity android:name=".view.ThemSanPham.DanhSachLoaiSanPhamActivity"/>
         <activity android:name=".view.SanPhamDaXem.SanPhamDaXemActivity"/>
+        <activity android:name=".view.ThemSanPham.ThongSoKyThuatActivity"/>
+        <activity android:name=".view.SanPhamDaBan.SanPhamDaBanActivity"/>
+        <activity android:name=".view.SuaThongTinSanPham.SuaThongTinSabPhamActivity"
+            android:theme="@style/AppDialogTheme"
+            android:label="Sửa thông tin sản phẩm"
+            >
+
+        </activity>
 
         <meta-data android:name = "com.facebook.sdk.ApplicationId"
             android:value = "@string/facebook_app_id" />

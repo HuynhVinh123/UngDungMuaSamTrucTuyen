@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ public class SanPhamDaXemActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_sanphamyeuthich);
+        setContentView(R.layout.layout_sanphamdaxem);
 
         recyclerView = (RecyclerView) findViewById(R.id.recySanPhamYeuThich);
         toolbar = (Toolbar) findViewById(R.id.toolbarSPYeuThich);
@@ -46,19 +48,31 @@ public class SanPhamDaXemActivity  extends AppCompatActivity {
         sanPhamViewModel.layDanhSachSanPham().observe(this, new Observer<List<SanPham_Room>>() {
             @Override
             public void onChanged(@Nullable List<SanPham_Room> sanPham_rooms) {
-                if(sanPham_rooms.size()>0) {
                     sanPhamDaXemAdapter = new SanPhamDaXemAdapter(SanPhamDaXemActivity.this,R.layout.custom_layout_sanphamyeuthich,sanPham_rooms);
                     recyclerView.setAdapter(sanPhamDaXemAdapter);
                     sanPhamDaXemAdapter.notifyDataSetChanged();
-                }
             }
         });
 
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_delete,menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        onBackPressed();
+        int id = item.getItemId();
+        switch (id){
+            case R.id.itDelete:
+                sanPhamViewModel.xoaSanPham();
+                break;
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
         return true;
     }
 }

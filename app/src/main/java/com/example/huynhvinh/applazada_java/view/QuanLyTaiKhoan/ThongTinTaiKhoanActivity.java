@@ -27,6 +27,8 @@ import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.NhanVien;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import es.dmoral.toasty.Toasty;
+
 public class ThongTinTaiKhoanActivity extends AppCompatActivity implements ViewThongTinTaiKhoan, View.OnFocusChangeListener, View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     Toolbar toolbarThongTinTaiKhoan;
@@ -132,14 +134,14 @@ public class ThongTinTaiKhoanActivity extends AppCompatActivity implements ViewT
 
     @Override
     public void CapNhatThanhCong() {
-        Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Cập nhật thành công!", Toast.LENGTH_SHORT,true).show();
         Intent iQuanLyTK = new Intent(this,QuanLyTaiKhoanActivity.class);
         startActivity(iQuanLyTK);
     }
 
     @Override
     public void CapNhatThatBai() {
-        Toast.makeText(this, "Cập nhật thất bại!", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Cập nhật thất bại!", Toast.LENGTH_SHORT,true).show();
     }
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -253,7 +255,7 @@ public class ThongTinTaiKhoanActivity extends AppCompatActivity implements ViewT
                 }
                 if(tennv.trim().equals("") || email.trim().equals("") || sodt.trim().equals("") || diachi.trim().equals("") || ngaysinh.trim().equals(""))
                 {
-                    Toast.makeText(this, "Bạn chưa nhập đầy đủ các thông tin!", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(this, "Bạn chưa nhập đầy đủ các thông tin!", Toast.LENGTH_SHORT,true).show();
                 }else {
                     NhanVien nhanVien = new NhanVien();
                     nhanVien.setMaNV(manv);

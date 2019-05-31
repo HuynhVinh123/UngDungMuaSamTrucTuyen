@@ -30,6 +30,10 @@ public class SanPhamRepository {
         return allProucts;
     }
 
+    public void deleteAllProduct(){
+        new DeleteAllNoteAsyncTask(handleSanPhamDAO).execute();
+    }
+
 
 
     private  static class InsertProductAsyncTask extends AsyncTask<SanPham_Room, Void, Void> {
@@ -62,6 +66,23 @@ public class SanPhamRepository {
         @Override
         protected Void doInBackground(SanPham_Room... sanPham_rooms) {
             handleSanPhamDAO.themSanPham(sanPham_rooms[0]);
+            return null;
+        }
+    }
+
+    private  static class DeleteAllNoteAsyncTask extends AsyncTask<SanPham_Room, Void, Void> {
+
+        private  HandleSanPhamDAO  handleSanPhamDAO;
+
+
+        public DeleteAllNoteAsyncTask(HandleSanPhamDAO handleSanPhamDAO) {
+            this.handleSanPhamDAO = handleSanPhamDAO;
+        }
+
+
+        @Override
+        protected Void doInBackground(SanPham_Room... sanPham_rooms) {
+            handleSanPhamDAO.deleteAllNotes();
             return null;
         }
     }

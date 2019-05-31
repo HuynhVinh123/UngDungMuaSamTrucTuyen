@@ -20,6 +20,8 @@ import com.example.huynhvinh.applazada_java.model.ObjectClass.HoaDon;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class DonHangActivity extends AppCompatActivity implements  ViewDonHang{
 
     Toolbar toolbar;
@@ -84,7 +86,7 @@ public class DonHangActivity extends AppCompatActivity implements  ViewDonHang{
 
     @Override
     public void LayDonHangThatBai() {
-        Toast.makeText(this, "Lấy đơn hàng thất bại!", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Lấy đơn hàng thất bại!", Toast.LENGTH_SHORT,true).show();
     }
 
 

@@ -20,6 +20,8 @@ import com.example.huynhvinh.applazada_java.model.ObjectClass.SanPham;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class SanPhamYeuThichActivity extends AppCompatActivity implements ViewSanPhamYeuThich {
 
     PresenterLogicSanPhamYeuThich presenterLogicSanPhamYeuThich;
@@ -62,13 +64,13 @@ public class SanPhamYeuThichActivity extends AppCompatActivity implements ViewSa
 
     @Override
     public void XoaSanPhamThanhcong() {
-        Toast.makeText(this, "Xóa sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Xóa sản phẩm thành công!", Toast.LENGTH_SHORT,true).show();
         presenterLogicSanPhamYeuThich.LayDanhSachSanPhamYeuThich(this);
     }
 
     @Override
     public void XoaSanPhamThatBai() {
-        Toast.makeText(this, "Xóa sản phẩm thất bại!", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Xóa sản phẩm thất bại!", Toast.LENGTH_SHORT,true).show();
 
     }
 }

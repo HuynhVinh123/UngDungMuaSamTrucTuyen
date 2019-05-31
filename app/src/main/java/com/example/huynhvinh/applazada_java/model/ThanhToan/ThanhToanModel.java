@@ -109,4 +109,43 @@ public class ThanhToanModel {
         return kiemtra;
     }
 
+    public  void CapNhatSoLuongSanPham(HoaDon hoaDon){
+
+        List<HashMap<String,String>> attrs = new ArrayList<>();
+
+        // Lấy dữ liệu bằng phương thức POST
+        String duongdan = IPConnect.IP;
+
+        List<ChiTietHoaDon> chiTietHoaDonList = hoaDon.getChiTietHoaDonList();
+
+        // Parse list sản phẩm về dạng chuỗi Json
+        String chuoijson = "{\"DANHSACHMASP\" :[ " ;
+        for(int i=0; i < chiTietHoaDonList.size();i++)
+        {
+
+            chuoijson += "{";
+
+            chuoijson += "\"masp\" : " + chiTietHoaDonList.get(i).getMaSP();
+
+            if(i==chiTietHoaDonList.size()-1) {
+                chuoijson += "}";
+            }else{
+                chuoijson += "},";
+            }
+        }
+
+        chuoijson+="]}";
+
+        HashMap<String,String> hsDanhSachMaSanPham = new HashMap<>();
+        hsDanhSachMaSanPham.put("danhsachmasp",chuoijson);
+
+        HashMap<String,String> hashHam = new HashMap<>();
+        hashHam.put("ham","CapNhatLuotMuaChoSanPham");
+
+        attrs.add(hsDanhSachMaSanPham);
+        attrs.add(hashHam);
+
+        DownloadJSON downloadJSON = new DownloadJSON(duongdan,attrs);
+        downloadJSON.execute();
+    }
 }

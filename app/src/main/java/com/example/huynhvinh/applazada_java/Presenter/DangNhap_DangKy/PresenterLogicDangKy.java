@@ -1,5 +1,7 @@
 package com.example.huynhvinh.applazada_java.Presenter.DangNhap_DangKy;
 
+import android.util.Log;
+
 import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangKyModel;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.NhanVien;
 import com.example.huynhvinh.applazada_java.model.QuenMatKhau.QuenMatKhauModel;
@@ -49,6 +51,7 @@ public class PresenterLogicDangKy implements IPresenterDangKy {
             kiemtradangky = true;
         }else{
             kiemtradangky =false;
+
         }
 
         return  kiemtradangky;

@@ -40,6 +40,7 @@ import android.widget.Toast;
 
 import com.example.huynhvinh.applazada_java.Adapter.DanhGiaAdapter;
 import com.example.huynhvinh.applazada_java.Adapter.ViewPagerSliderAdapter;
+import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.ChiTietSanPham.FragmentSliderChiTietSanPham;
 import com.example.huynhvinh.applazada_java.Presenter.ChiTietSanPham.PresenterLogicChiTietSanPham;
 import com.example.huynhvinh.applazada_java.Presenter.KhuyenMai.PresenterLogicKhuyenMai;
@@ -61,6 +62,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChiTietSanPham, ViewPager.OnPageChangeListener, View.OnClickListener {
 
     private ViewPager viewPager;
@@ -71,7 +74,8 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
     private List<Fragment> fragmentList;
     private TextView txtTenSP,txtGiaTien,txtTenCuaHangDongGoi,txtThongTinSP,txtXemTatCaNhanXet,txtGioHang,txtGiamGia;
     private Toolbar toolbar;
-    private ImageView imgXemThemChiTiet,imThemGioHang,imgYeuThich;
+    private ImageView imgXemThemChiTiet,imgYeuThich;
+    private FButton imThemGioHang, btn_SuaSanPham;
     private boolean kiemtraxochitiet = false;
     private boolean onPause = false;
     private LinearLayout lnThongSoKyThuat;
@@ -81,7 +85,6 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
     private SanPham sanPhamGioHang,sanPhamYeuThich;
     private NestedScrollView nestedScrollView;
     private SanPhamViewModel sanPhamViewModel;
-
     private String hinhSanPham,tenSanPham;
     private int masp;
     private int phantramkm=0;
@@ -93,6 +96,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
 
         setContentView(R.layout.layout_chitietsanpham);
 
+        btn_SuaSanPham = (FButton) findViewById(R.id.btn_Suasanpham);
         txtGiamGia = (TextView) findViewById(R.id.txtGiamgia);
         nestedScrollView = (NestedScrollView) findViewById(R.id.nestScrollviewChiTietSanPham);
         viewPager = (ViewPager) findViewById(R.id.viewPagerSlider);
@@ -107,7 +111,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
         recyclerDanhGiaChiTiet = (RecyclerView) findViewById(R.id.recyclerDanhGiaChiTiet);
         txtXemTatCaNhanXet = (TextView) findViewById(R.id.txtXemTatCaNhanXet);
         rtbDanhGiaSanPham  = (RatingBar) findViewById(R.id.ratingBarChiTietSanPham);
-        imThemGioHang = (ImageView) findViewById(R.id.imThemGioHang);
+        imThemGioHang = (FButton) findViewById(R.id.imThemGioHang);
         imgYeuThich = (ImageView) findViewById(R.id.imgYeuThich);
         toolbar = (Toolbar) findViewById(R.id.toolBarChiTietSanPham);
         setSupportActionBar(toolbar);
@@ -489,23 +493,23 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
 
     @Override
     public void ThemGioHangThanhCong() {
-        Toast.makeText(this, "Sản phẩm đã được thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Sản phẩm đã được thêm vào giỏ hàng", Toast.LENGTH_SHORT,true).show();
         txtGioHang.setText(String.valueOf(presenterLogicChiTietSanPham.DemSoLuongSanPhamCoTrongGioHang(this)));
     }
 
     @Override
     public void ThemGioHangThatBai() {
-        Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+        Toasty.warning(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override
     public void ThemSPYeuThichThanhCong() {
-        Toast.makeText(this, "Sản phẩm đã được thêm vào danh sách yêu thích", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Sản phẩm đã được thêm vào danh sách yêu thích", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override
     public void ThemSPYeuThichThatBai() {
-        Toast.makeText(this, "Sản phẩm đã có trong danh sách yêu thích", Toast.LENGTH_SHORT).show();
+        Toasty.warning(this, "Sản phẩm đã có trong danh sách yêu thích", Toast.LENGTH_SHORT,true).show();
 
     }
 
