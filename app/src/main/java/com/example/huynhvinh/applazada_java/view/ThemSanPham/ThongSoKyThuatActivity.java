@@ -86,7 +86,7 @@ public class ThongSoKyThuatActivity extends AppCompatActivity  implements View.O
         else {
             ThongSoKyThuat thongSo = new ThongSoKyThuat();
             thongSo.setTenchitiet(txt_BaoHanh.getText().toString());
-            thongSo.setGiatri(edt_BaoHanh.getText().toString());
+            thongSo.setGiatri(edt_BaoHanh.getText().toString() + " tháng");
             thongSoKyThuatViewModel.themThongSo(thongSo);
 
             ThongSoKyThuat thongSo1 = new ThongSoKyThuat();
@@ -96,17 +96,17 @@ public class ThongSoKyThuatActivity extends AppCompatActivity  implements View.O
 
             ThongSoKyThuat thongSo2 = new ThongSoKyThuat();
             thongSo2.setTenchitiet(txt_RAM.getText().toString());
-            thongSo2.setGiatri(edt_RAM.getText().toString());
+            thongSo2.setGiatri(edt_RAM.getText().toString() + " GB");
             thongSoKyThuatViewModel.themThongSo(thongSo2);
 
             ThongSoKyThuat thongSo3 = new ThongSoKyThuat();
             thongSo3.setTenchitiet(txt_Pin.getText().toString());
-            thongSo3.setGiatri(edt_Pin.getText().toString());
+            thongSo3.setGiatri(edt_Pin.getText().toString() + " mAh");
             thongSoKyThuatViewModel.themThongSo(thongSo3);
 
             ThongSoKyThuat thongSo4 = new ThongSoKyThuat();
             thongSo4.setTenchitiet(txt_KichThuoc.getText().toString());
-            thongSo4.setGiatri(edt_KichThuoc.getText().toString());
+            thongSo4.setGiatri(edt_KichThuoc.getText().toString() + " Inches");
             thongSoKyThuatViewModel.themThongSo(thongSo4);
 
             ThongSoKyThuat thongSo5 = new ThongSoKyThuat();
@@ -126,17 +126,17 @@ public class ThongSoKyThuatActivity extends AppCompatActivity  implements View.O
 
             ThongSoKyThuat thongSo8 = new ThongSoKyThuat();
             thongSo8.setTenchitiet(txt_CameraTruoc.getText().toString());
-            thongSo8.setGiatri(edt_CameraTruoc.getText().toString());
+            thongSo8.setGiatri(edt_CameraTruoc.getText().toString() + " MP");
             thongSoKyThuatViewModel.themThongSo(thongSo8);
 
             ThongSoKyThuat thongSo9 = new ThongSoKyThuat();
             thongSo9.setTenchitiet(txt_CameraSau.getText().toString());
-            thongSo9.setGiatri(edt_CameraSau.getText().toString());
+            thongSo9.setGiatri(edt_CameraSau.getText().toString() + " MP");
             thongSoKyThuatViewModel.themThongSo(thongSo9);
 
             ThongSoKyThuat thongSo10 = new ThongSoKyThuat();
             thongSo10.setTenchitiet(txt_BoNhoTrong.getText().toString());
-            thongSo10.setGiatri(edt_BoNhoTrong.getText().toString());
+            thongSo10.setGiatri(edt_BoNhoTrong.getText().toString() + " GB");
             thongSoKyThuatViewModel.themThongSo(thongSo10);
         }
 

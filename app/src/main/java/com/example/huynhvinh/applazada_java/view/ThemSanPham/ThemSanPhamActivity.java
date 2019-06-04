@@ -69,6 +69,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
     private Spinner spinner;
     private List<String> listTenThuongHieu = new ArrayList<>();
     private boolean checkPause = false;
+    List<ThuongHieu> thuongHieuList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,7 +118,8 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                 // Sử lý cho spinner của thương hiệu
                 lnThuongHieu.setVisibility(View.VISIBLE);
                 lnThongSoKyThuat.setVisibility(View.VISIBLE);
-                List<ThuongHieu> thuongHieuList = prensenterLogicThemSanPham.LayDanhSachThuongHieu();
+                thuongHieuList = prensenterLogicThemSanPham.LayDanhSachThuongHieu();
+
                 listTenThuongHieu.clear();
                 for (int i=0; i< thuongHieuList.size();i++)
                 {
@@ -125,13 +127,14 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                 }
 
                 ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listTenThuongHieu);
-
                 spinner.setAdapter(arrayAdapter);
+                arrayAdapter.notifyDataSetChanged();
 
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         mathuonghieu = thuongHieuList.get(position).getMATHUONGHIEU();
+                        Log.d("kiemtraa",mathuonghieu + "");
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -172,27 +175,6 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                 // Sử lý cho spinner của thương hiệu
                 lnThuongHieu.setVisibility(View.VISIBLE);
                 lnThongSoKyThuat.setVisibility(View.VISIBLE);
-                List<ThuongHieu> thuongHieuList = prensenterLogicThemSanPham.LayDanhSachThuongHieu();
-                for (int i=0; i< thuongHieuList.size();i++)
-                {
-                    listTenThuongHieu.add(thuongHieuList.get(i).getTENTHUONGHIEU());
-                }
-
-                ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listTenThuongHieu);
-
-                spinner.setAdapter(arrayAdapter);
-
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        mathuonghieu = thuongHieuList.get(position).getMATHUONGHIEU();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
             }else {
                lnThuongHieu.setVisibility(View.GONE);
                lnThongSoKyThuat.setVisibility(View.GONE);
@@ -203,7 +185,8 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onPause() {
         super.onPause();
-       checkPause = true;
+
+        checkPause = true;
     }
 
     @Override
@@ -254,13 +237,62 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                         thongSoKyThuatViewModel.layDanhSachThongSo().observe(ThemSanPhamActivity.this, new Observer<List<ThongSoKyThuat>>() {
                             @Override
                             public void onChanged(@Nullable List<ThongSoKyThuat> thongSoKyThuats) {
-                                Log.d("thongsokythuat",thongSoKyThuats.size() + "");
-                                if(thongSoKyThuats.size()>0)
+
+                                if(maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
                                 {
-                                    sanPham.setThongSoKyThuatList(thongSoKyThuats);
+                                    if(thongSoKyThuats.size()>0)
+                                    {
+                                        sanPham.setThongSoKyThuatList(thongSoKyThuats);
+                                        sanPham.setTENSP(edtTenSanPham.getText().toString());
+                                        sanPham.setGIA(Integer.parseInt(edtGiaSanPham.getText().toString()));
+                                        sanPham.setTHONGTIN("<p>"+edtMoTaSanPham.getText().toString()+"</p>");
+                                        sanPham.setMALOAISP(maloaisp);
+                                        sanPham.setSOLUONG(Integer.parseInt(edtSoLuongSanPham.getText().toString()));
+                                        if(nhanVien.getMaNV()==0)
+                                        {
+                                            sanPham.setMANV(Integer.parseInt(manv));
+                                        }else {
+                                            sanPham.setMANV(nhanVien.getMaNV());
+                                        }
+
+                                        if (maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
+                                        {
+                                            sanPham.setMATHUONGHIEU(mathuonghieu);
+                                        }
+                                        if(bitmap1 != null) {
+                                            bitmap1.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream1);
+                                            byteArray1 = byteArrayOutputStream1.toByteArray();
+                                            convertImage1 = Base64.encodeToString(byteArray1, Base64.DEFAULT);
+                                        }
+                                        if(bitmap2!=null)
+                                        {
+                                            bitmap2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream2);
+                                            byteArray2 = byteArrayOutputStream2.toByteArray();
+                                            convertImage2 = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+                                        }
+                                        if(bitmap3 != null)
+                                        {
+                                            bitmap3.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream3);
+                                            byteArray3 = byteArrayOutputStream3.toByteArray();
+                                            convertImage3 = Base64.encodeToString(byteArray3, Base64.DEFAULT);
+                                        }
+
+                                        boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,sanPham.getThongSoKyThuatList());
+                                        if(kiemtra)
+                                        {
+                                            Toasty.success(ThemSanPhamActivity.this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT,true).show();
+                                            thongSoKyThuatViewModel.xoaThongSo();
+                                            Intent iQuanLyTaiKhoan = new Intent(ThemSanPhamActivity.this, QuanLyTaiKhoanActivity.class);
+                                            startActivity(iQuanLyTaiKhoan);
+                                        }else {
+                                            Toasty.error(ThemSanPhamActivity.this, "Thêm sản phẩm thất bại !", Toast.LENGTH_SHORT,true).show();
+                                        }
+                                    }
+                                }
+                                else {
                                     sanPham.setTENSP(edtTenSanPham.getText().toString());
                                     sanPham.setGIA(Integer.parseInt(edtGiaSanPham.getText().toString()));
-                                    sanPham.setTHONGTIN(edtMoTaSanPham.getText().toString());
+                                    sanPham.setTHONGTIN("<p>"+edtMoTaSanPham.getText().toString()+"</p>");
                                     sanPham.setMALOAISP(maloaisp);
                                     sanPham.setSOLUONG(Integer.parseInt(edtSoLuongSanPham.getText().toString()));
                                     if(nhanVien.getMaNV()==0)
@@ -272,6 +304,17 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
 
                                     if (maloaisp == 2 || maloaisp == 3 || maloaisp == 4)
                                     {
+                                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                mathuonghieu = thuongHieuList.get(position).getMATHUONGHIEU();
+                                            }
+
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> parent) {
+
+                                            }
+                                        });
                                         sanPham.setMATHUONGHIEU(mathuonghieu);
                                     }
                                     if(bitmap1 != null) {
@@ -303,6 +346,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                                         Toasty.error(ThemSanPhamActivity.this, "Thêm sản phẩm thất bại !", Toast.LENGTH_SHORT,true).show();
                                     }
                                 }
+
                             }
                         });
 

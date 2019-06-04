@@ -176,7 +176,6 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
 
                 giatien  = giatien*phantramkm/100;
 
-
             }
         }
 
@@ -190,11 +189,15 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
         if(sanPham.getTHONGTIN().length()<100)
         {
             imgXemThemChiTiet.setVisibility(View.GONE);
-            txtThongTinSP.setText(sanPham.getTHONGTIN()); // Giới hạn 100 kí tự
+            String str = sanPham.getTHONGTIN().replaceAll("<p>","");
+            String strReplace = str.replaceAll("</p>","");
+            txtThongTinSP.setText(strReplace); // Giới hạn 100 kí tự
 
         }
         else{
-            txtThongTinSP.setText(sanPham.getTHONGTIN().substring(0,100)); // Giới hạn 100 kí tự
+            String str = sanPham.getTHONGTIN().substring(0,100).toString().replaceAll("<p>","");
+            String strReplace = str.replaceAll("</p>","");
+            txtThongTinSP.setText(strReplace); // Giới hạn 100 kí tự
             imgXemThemChiTiet.setVisibility(View.VISIBLE);
             imgXemThemChiTiet.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -203,7 +206,9 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
                     if(kiemtraxochitiet) {
 
                         // Sau khi mở chi tiết
-                        txtThongTinSP.setText(sanPham.getTHONGTIN());
+                        String str = sanPham.getTHONGTIN().replaceAll("<p>","");
+                        String strReplace = str.replaceAll("</p>","");
+                        txtThongTinSP.setText(strReplace);
                         imgXemThemChiTiet.setImageDrawable(getHinhChiTiet(R.drawable.ic_keyboard_arrow_up_black_24dp));
                         lnThongSoKyThuat.setVisibility(View.VISIBLE);
 
@@ -213,7 +218,9 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
 
                     }else{
                         txtThongTinSP.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        txtThongTinSP.setText(sanPham.getTHONGTIN().substring(0,100)); // Giới hạn 100 kí tự
+                        String str = sanPham.getTHONGTIN().substring(0,100).toString().replaceAll("<p>","");
+                        String strReplace = str.replaceAll("</p>","");
+                        txtThongTinSP.setText(strReplace); // Giới hạn 100 kí tự
                         imgXemThemChiTiet.setImageDrawable(getHinhChiTiet(R.drawable.ic_keyboard_arrow_down_black_24dp));
                         lnThongSoKyThuat.setVisibility(View.GONE);
                     }

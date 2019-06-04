@@ -21,12 +21,14 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@drawable/custom_image"
+
+        >
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginTop="65dp"
             >
             <LinearLayout
                 android:id="@+id/linearThongTinSanPhamTrong"
