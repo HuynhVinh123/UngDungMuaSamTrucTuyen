@@ -13,13 +13,13 @@
         android:largeHeap="true"
         >
         <activity android:name=".view.TrangChu.TrangChuActivity">
+        </activity>
+        <activity android:name=".view.ManHinhChao.ManHinhChaoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".view.ManHinhChao.ManHinhChaoActivity">
         </activity>
         <activity android:name=".view.DangNhap.DangNhapActivity"></activity>
         <activity android:name=".view.HienThiSanPhamTheoDanhMuc.HienThiSanPhamTheoDanhMucActivity"></activity>

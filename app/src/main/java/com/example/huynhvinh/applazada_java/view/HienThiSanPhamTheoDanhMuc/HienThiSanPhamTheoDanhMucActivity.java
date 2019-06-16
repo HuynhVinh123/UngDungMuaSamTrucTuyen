@@ -74,6 +74,7 @@ public class HienThiSanPhamTheoDanhMucActivity extends AppCompatActivity impleme
         String TenSP = intent.getStringExtra("TENLOAI");
         KiemTra = intent.getBooleanExtra("KIEMTRA",false);
 
+
         presenterLogicHienThiSanPhamTheoDanhMuc = new PresenterLogicHienThiSanPhamTheoDanhMuc(this);
         presenterLogicHienThiSanPhamTheoDanhMuc.LayDanhSachSanPhamTheoMaLoai(MaSP,KiemTra);
 
@@ -111,7 +112,7 @@ public class HienThiSanPhamTheoDanhMucActivity extends AppCompatActivity impleme
 
     @Override
     public void LoiHienThiDanhSachSanPham() {
-        Toasty.error(this, "Lỗi !", Toast.LENGTH_SHORT,true).show();
+        Toasty.error(this, "Không có sản phẩm !", Toast.LENGTH_SHORT,true).show();
     }
 
     @Override

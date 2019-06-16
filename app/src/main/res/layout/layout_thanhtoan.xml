@@ -182,7 +182,7 @@
                     android:text="Tôi cam kết các thông tin trên là hoàn toàn chính xác"
                     android:layout_margin="10dp"
                     />
-                <Button
+                <com.example.huynhvinh.applazada_java.CustomView.FButton
                     android:id="@+id/btnThanhToan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

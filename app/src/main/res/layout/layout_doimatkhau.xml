@@ -57,7 +57,7 @@
                 android:inputType="textPassword"
                 />
         </android.support.design.widget.TextInputLayout>
-        <Button
+        <com.example.huynhvinh.applazada_java.CustomView.FButton
             android:id="@+id/btnDoiMatKhau"
             android:layout_margin="8dp"
             android:layout_width="match_parent"

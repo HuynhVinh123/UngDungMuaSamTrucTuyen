@@ -7,6 +7,7 @@
     >
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
@@ -14,9 +15,11 @@
         >
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
             >
 
             <LinearLayout
@@ -46,6 +49,7 @@
                 android:background="@color/colorGreenDarkBackGround"
                 app:title=" "
                 app:theme = "@style/menuitemcolor"
+                app:titleTextColor="@color/colorWhite"
                 >
 
             </android.support.v7.widget.Toolbar>

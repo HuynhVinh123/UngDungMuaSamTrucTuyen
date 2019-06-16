@@ -52,7 +52,7 @@ public class TopDienThoaiDienTuAdapter extends RecyclerView.Adapter<TopDienThoai
     @TargetApi(Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Picasso.with(context).load(sanPhamList.get(position).getANHLON().toString()).resize(120,150).into(holder.imgHinhSanPham);
+        Picasso.with(context).load(sanPhamList.get(position).getANHLON().toString()).into(holder.imgHinhSanPham);
         holder.txtTenSP.setText(sanPhamList.get(position).getTENSP());
 
         // Xử lý khuyến mãi

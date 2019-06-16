@@ -6,6 +6,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,8 @@ import android.icu.text.NumberFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -76,6 +79,8 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
     private Toolbar toolbar;
     private ImageView imgXemThemChiTiet,imgYeuThich;
     private FButton imThemGioHang, btn_SuaSanPham;
+    private AppBarLayout appBarLayout;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     private boolean kiemtraxochitiet = false;
     private boolean onPause = false;
     private LinearLayout lnThongSoKyThuat;
@@ -96,6 +101,8 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
 
         setContentView(R.layout.layout_chitietsanpham);
 
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolBar);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
         btn_SuaSanPham = (FButton) findViewById(R.id.btn_Suasanpham);
         txtGiamGia = (TextView) findViewById(R.id.txtGiamgia);
         nestedScrollView = (NestedScrollView) findViewById(R.id.nestScrollviewChiTietSanPham);
@@ -117,22 +124,49 @@ public class ChiTietSanPhamActivity extends AppCompatActivity implements ViewChi
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(" ");
 
         int MaSP = getIntent().getIntExtra("masp",0);
-
-
 
         presenterLogicChiTietSanPham = new PresenterLogicChiTietSanPham(this);
         presenterLogicChiTietSanPham.LayChiTietSanPham(MaSP);
         presenterLogicChiTietSanPham.LayDanhSachDanhGiaCuaSanPham(masp,0);
 
         ThemDotSlider(0);
+        initCollapsingToolbar();
 
         txtVietDanhGia.setOnClickListener(this);
         txtXemTatCaNhanXet.setOnClickListener(this);
         imThemGioHang.setOnClickListener(this);
         imgYeuThich.setOnClickListener(this);
+
+    }
+
+    private void initCollapsingToolbar() {
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+        appBarLayout.setExpanded(true);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+
+                if(scrollRange == -1)
+                {
+                    scrollRange =appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange  + i == 0)
+                {
+                    collapsingToolbarLayout.setTitle(sanPhamGioHang.getTENSP());
+                    isShow =true;
+                }
+                else  if (isShow)
+                {
+                        collapsingToolbarLayout.setTitle(" ");
+                        isShow = false;
+                }
+
+            }
+        });
 
     }
 

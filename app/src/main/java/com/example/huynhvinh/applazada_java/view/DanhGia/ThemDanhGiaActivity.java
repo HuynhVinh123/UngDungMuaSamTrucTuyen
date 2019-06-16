@@ -23,6 +23,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.DanhGia.PresenterLogicDanhGia;
 import com.example.huynhvinh.applazada_java.Presenter.QuanLyTaiKhoan.PresenterLogicQuanLyTaiKhoan;
 import com.example.huynhvinh.applazada_java.R;
@@ -40,7 +41,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements RatingBar.
     TextInputLayout input_edTieuDe, input_edNoiDung;
     EditText edTieuDe, edNoiDung;
     RatingBar rbDanhGia;
-    Button btnDongYDanhGia;
+    FButton btnDongYDanhGia;
     int masp = 0;
     int sosao = 0;
     PresenterLogicDanhGia presenterLogicDanhGia;
@@ -60,7 +61,7 @@ public class ThemDanhGiaActivity extends AppCompatActivity implements RatingBar.
         edTieuDe = (EditText) findViewById(R.id.edtTieuDe);
         edNoiDung = (EditText) findViewById(R.id.edtNoiDung);
         rbDanhGia = (RatingBar) findViewById(R.id.rbDanhGia);
-        btnDongYDanhGia = (Button) findViewById(R.id.btnDongYDanhGia);
+        btnDongYDanhGia = (FButton) findViewById(R.id.btnDongYDanhGia);
         imgHinhSPDanhGia = (ImageView) findViewById(R.id.imgHinhSPDanhGia);
         txtTenSPDanhGia = (TextView) findViewById(R.id.txtTenSPDanhGia);
         toolbarDanhGia = (Toolbar) findViewById(R.id.toolbarDanhGia);

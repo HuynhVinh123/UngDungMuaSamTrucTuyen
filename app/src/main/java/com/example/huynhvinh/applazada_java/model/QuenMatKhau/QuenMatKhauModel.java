@@ -1,5 +1,7 @@
 package com.example.huynhvinh.applazada_java.model.QuenMatKhau;
 
+import android.util.Log;
+
 import com.example.huynhvinh.applazada_java.ConnectInternet.DownloadJSON;
 import com.example.huynhvinh.applazada_java.ConnectInternet.IPConnect;
 
@@ -51,7 +53,7 @@ public class QuenMatKhauModel {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        Log.d("kiemtramanv",manv+"");
         return  manv;
     }
 

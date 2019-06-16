@@ -22,7 +22,11 @@ public class PresenterLogicQuenMatKhau implements  IPresenterQuenMatKhau {
     @Override
     public void KiemTraEMail(String email) {
         int manv = quenMatKhauModel.KiemTraEmail(email);
-        viewQuenMatKhau.EmailHopLe(manv);
+        if(manv!=0) {
+            viewQuenMatKhau.EmailHopLe(manv);
+        }else {
+            viewQuenMatKhau.EmailKhongHopLe();
+        }
     }
 
     public  boolean CapNhatMatKhau(String matkhau,int manv){

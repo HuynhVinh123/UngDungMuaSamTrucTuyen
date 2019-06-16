@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.ThanhToan.PresenterLogicThanhToan;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
@@ -35,7 +36,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     EditText edTenNguoiNhan,edDiaChi,edSoDT,edEmail;
     ImageButton imNhanTienKhiGiaoHang,imChuyenKhoan;
     TextView txtNhanTienKhiGiaoHang,txtChuyenKhoan;
-    Button btnThanhToan;
+    FButton btnThanhToan;
     CheckBox cbThoaThuan,cb_giaohang;
     PresenterLogicThanhToan presenterLogicThanhToan;
     List<ChiTietHoaDon> chiTietHoaDonList = new ArrayList<>();
@@ -54,7 +55,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         edSoDT = (EditText) findViewById(R.id.edSoDT);
         imNhanTienKhiGiaoHang = (ImageButton) findViewById(R.id.imNhanTienKhiGiaoHang);
         imChuyenKhoan = (ImageButton) findViewById(R.id.imChuyenKhoan);
-        btnThanhToan = (Button) findViewById(R.id.btnThanhToan);
+        btnThanhToan = (FButton) findViewById(R.id.btnThanhToan);
         cbThoaThuan = (CheckBox) findViewById(R.id.cbThoaThuan);
         txtNhanTienKhiGiaoHang = (TextView) findViewById(R.id.txtNhanTienKhiGiaoHang);
         txtChuyenKhoan = (TextView) findViewById(R.id.txtChuyenKhoan);

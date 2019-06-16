@@ -53,24 +53,14 @@ import com.facebook.login.LoginManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.PortUnreachableException;
-import java.net.URL;
+
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
 public class TrangChuActivity extends AppCompatActivity implements View.OnClickListener,ViewXuLyMenu {
 
-    public static final String SERER = "http://192.168.1.142:8080/weblazada/webadmin";
+    public static final String SERER = "http://192.168.1.132:8080/weblazada/webadmin";
 
     Button btnTimKiem;
     Toolbar toolbar;
@@ -313,7 +303,7 @@ public class TrangChuActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.button_message:
                 Uri uri = Uri.parse("fb-messenger://user/");
-                 uri = ContentUris.withAppendedId(uri,Long.valueOf("100010434228127"));
+                uri = ContentUris.withAppendedId(uri,Long.valueOf("100010434228127"));
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
                 try {

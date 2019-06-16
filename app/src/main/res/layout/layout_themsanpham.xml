@@ -159,6 +159,157 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lnSanPhamYeuThich"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/custom_click"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/price"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:text="Giá"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edtGiaSanPham"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:backgroundTint="@color/colorWhite"
+                            android:hint="Đặt giá"
+                            android:inputType="number"
+                            android:textColor="@color/colorGray"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/colorGrayChiTiet" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/custom_click"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/warehouse"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:text="Kho hàng"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edtSoLuong"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:backgroundTint="@color/colorWhite"
+                            android:hint="Số lượng"
+                            android:inputType="number"
+                            android:textColor="@color/colorGray"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/colorGrayChiTiet" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/custom_click"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/scale"
+
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:text="Cân nặng"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edtCanNang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:backgroundTint="@color/colorWhite"
+                            android:hint="Nhập cân nặng"
+                            android:inputType="number"
+                            android:textColor="@color/colorGray"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/colorGrayChiTiet" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@color/colorWhite"
                     android:layout_marginTop="8dp"
@@ -348,162 +499,12 @@
                     android:layout_height="12dp"
                     android:background="@color/colorGrayChiTiet"
                     />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/colorWhite"
-                    >
-
-                    <LinearLayout
-                        android:id="@+id/lnSanPhamYeuThich"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:gravity="center"
-                        android:background="@drawable/custom_click"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/price"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Giá"
-                            android:layout_marginLeft="12dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15sp"
-                            android:layout_weight="1"
-                            />
-                        <EditText
-                            android:id="@+id/edtGiaSanPham"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Đặt giá"
-                            android:layout_marginLeft="8dp"
-                            android:backgroundTint="@color/colorWhite"
-                            android:background="@color/colorWhite"
-                            android:textSize="15sp"
-                            android:textColor="@color/colorGray"
-                            android:inputType="number"
-                            />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_marginTop="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/colorGrayChiTiet"
-                        />
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:gravity="center"
-                        android:background="@drawable/custom_click"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/warehouse"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Kho hàng"
-                            android:layout_marginLeft="12dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15sp"
-                            android:layout_weight="1"
-                            />
-                        <EditText
-                            android:id="@+id/edtSoLuong"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Số lượng"
-                            android:layout_marginLeft="8dp"
-                            android:backgroundTint="@color/colorWhite"
-                            android:background="@color/colorWhite"
-                            android:textSize="15sp"
-                            android:textColor="@color/colorGray"
-                            android:inputType="number"
-                            />
-
-                    </LinearLayout>
-                    <View
-                        android:layout_marginTop="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/colorGrayChiTiet"
-                        />
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:gravity="center"
-                        android:background="@drawable/custom_click"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/scale"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-
-                            />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Cân nặng"
-                            android:layout_marginLeft="12dp"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="15sp"
-                            android:layout_weight="1"
-                            />
-                        <EditText
-                            android:id="@+id/edtCanNang"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Nhập cân nặng"
-                            android:layout_marginLeft="8dp"
-                            android:backgroundTint="@color/colorWhite"
-                            android:background="@color/colorWhite"
-                            android:textSize="15sp"
-                            android:textColor="@color/colorGray"
-                            android:inputType="number"
-                            />
-
-                    </LinearLayout>
-                    <View
-                        android:layout_marginTop="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/colorGrayChiTiet"
-                        />
-                </LinearLayout>
 
                 <com.example.huynhvinh.applazada_java.CustomView.FButton
                     android:id="@+id/btnThemGioHang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Thêm giỏ hảng"
+                    android:text="Thêm sản phẩm"
                     android:textColor="@color/colorWhite"
                     android:layout_margin="16dp"
                     />

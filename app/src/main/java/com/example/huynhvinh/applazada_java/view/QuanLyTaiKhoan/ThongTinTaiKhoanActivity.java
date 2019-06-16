@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.QuanLyTaiKhoan.PresenterLogicQuanLyTaiKhoan;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
@@ -37,7 +38,7 @@ public class ThongTinTaiKhoanActivity extends AppCompatActivity implements ViewT
     EditText edtHoTenNV,edtTenDN,edtNgaySinhDN,edtDiaChi,edtPhone;
     RadioButton rdbNam,rdbNu;
     TextInputLayout textInput_HoTen,textInput_Email,textInput_Phone,textInput_DiaChi;
-    Button btnLuuThayDoi;
+    FButton btnLuuThayDoi;
     private  int manv;
 
 
@@ -46,7 +47,7 @@ public class ThongTinTaiKhoanActivity extends AppCompatActivity implements ViewT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_thongtintaikhoan);
 
-        btnLuuThayDoi = (Button) findViewById(R.id.btnLuuThayDoi);
+        btnLuuThayDoi = (FButton) findViewById(R.id.btnLuuThayDoi);
         rdbNu = (RadioButton) findViewById(R.id.rdbNu);
         rdbNam = (RadioButton) findViewById(R.id.rdbNam);
         edtNgaySinhDN = (EditText) findViewById(R.id.edtNgaySinhDN);

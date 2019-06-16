@@ -44,7 +44,6 @@ public class ThuongHieuLonAdapter extends RecyclerView.Adapter<ThuongHieuLonAdap
         return viewHolder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
@@ -58,7 +57,6 @@ public class ThuongHieuLonAdapter extends RecyclerView.Adapter<ThuongHieuLonAdap
                 iHienThiSanPhamTheoDanhMuc.putExtra("TENLOAI",thuongHieuList.get(position).getTENTHUONGHIEU());
                 iHienThiSanPhamTheoDanhMuc.putExtra("KIEMTRA",kiemtra);
                 context.startActivity(iHienThiSanPhamTheoDanhMuc);
-
             }
         });
 

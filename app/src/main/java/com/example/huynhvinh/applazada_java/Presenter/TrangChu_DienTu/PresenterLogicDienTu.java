@@ -62,6 +62,23 @@ public class PresenterLogicDienTu implements IPresenterDienTu {
         // Danh sách phụ kiện
         List<SanPham> phukienList = dienTuModel.LayDanhSachSanPhamTOP("LayDanhSachTopPhuKien","TOPPHUKIEN");
         List<ThuongHieu> topphukienList = dienTuModel.LayDanhSachThuongHieuLon("LayDanhSachPhuKien","DANHSACHPHUKIEN");
+        List<ThuongHieu> phuKiens = new ArrayList<>();
+        if(topphukienList.size() > 1) {
+
+            phuKiens.add(topphukienList.get(0));
+            for (int i = 1; i < topphukienList.size(); i++) {
+                int demTrung = 0;
+                for(int j= 0; j<phuKiens.size(); j++) {
+                    if (topphukienList.get(i).getMATHUONGHIEU() == phuKiens.get(j).getMATHUONGHIEU()) {
+                        demTrung++;
+                    }
+                }
+                if(demTrung==0)
+                {
+                    phuKiens.add(topphukienList.get(i));
+                }
+            }
+        }
 
         // Kiểm tra khuyến mãi
         if(phukienList.size()>0) {
@@ -77,7 +94,7 @@ public class PresenterLogicDienTu implements IPresenterDienTu {
         }
 
         DienTu dienTu1 = new DienTu();
-        dienTu1.setThuongHieus(topphukienList);
+        dienTu1.setThuongHieus(phuKiens);
         dienTu1.setSanPhams(phukienList);
         dienTu1.setThuonghieu(false);
         dienTu1.setTennoibat("Phụ kiện");

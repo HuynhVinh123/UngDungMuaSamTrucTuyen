@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.QuenMatKhau.PresenterLogicQuenMatKhau;
 import com.example.huynhvinh.applazada_java.R;
 
@@ -21,7 +22,7 @@ public class QuenMatKhauActivity extends AppCompatActivity implements View.OnCli
 
     PresenterLogicQuenMatKhau presenterLogicQuenMatKhau;
     EditText edtEmailDN;
-    Button btnLayLaiMatKhau;
+    FButton btnLayLaiMatKhau;
     Toolbar toolbar;
 
     @Override
@@ -31,7 +32,7 @@ public class QuenMatKhauActivity extends AppCompatActivity implements View.OnCli
 
         toolbar = (Toolbar) findViewById(R.id.toolbarQuenMatKhau);
         edtEmailDN = (EditText) findViewById(R.id.edtEmailQuenMatKhau);
-        btnLayLaiMatKhau = (Button) findViewById(R.id.btnLayLaiMatKhau);
+        btnLayLaiMatKhau = (FButton) findViewById(R.id.btnLayLaiMatKhau);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -55,7 +56,7 @@ public class QuenMatKhauActivity extends AppCompatActivity implements View.OnCli
             boolean kiemtra  = Patterns.EMAIL_ADDRESS.matcher(Email).matches();
             if(kiemtra)
             {
-                presenterLogicQuenMatKhau = new PresenterLogicQuenMatKhau(this::EmailHopLe);
+                presenterLogicQuenMatKhau = new PresenterLogicQuenMatKhau(this);
                 presenterLogicQuenMatKhau.KiemTraEMail(Email);
             }else {
                 Toasty.warning(this, "Bạn nhập chưa đúng email !", Toast.LENGTH_SHORT,true).show();
@@ -73,5 +74,10 @@ public class QuenMatKhauActivity extends AppCompatActivity implements View.OnCli
             iThongTinMatKhau.putExtra("manv", manv);
             startActivity(iThongTinMatKhau);
         }
+    }
+
+    @Override
+    public void EmailKhongHopLe() {
+        Toasty.error(this,"Email không tồn tại!",Toasty.LENGTH_SHORT,true).show();
     }
 }

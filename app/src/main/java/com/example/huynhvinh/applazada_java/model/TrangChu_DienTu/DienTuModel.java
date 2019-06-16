@@ -37,7 +37,7 @@ public class DienTuModel {
 
         try {
             dataJSON = downloadJSON.get();
-
+            Log.d("kiemtra",dataJSON);
             JSONObject jsonObject = new JSONObject(dataJSON);
             JSONArray jsonArrayThuongHieu = jsonObject.getJSONArray(tenmang);
             int dem = jsonArrayThuongHieu.length();
@@ -79,6 +79,7 @@ public class DienTuModel {
 
         try {
             dataJSON = downloadJSON.get();
+
             JSONObject jsonObject = new JSONObject(dataJSON);
             JSONArray jsonArrayThuongHieu = jsonObject.getJSONArray(tenmang);
             int dem = jsonArrayThuongHieu.length();

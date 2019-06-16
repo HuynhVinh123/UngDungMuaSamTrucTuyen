@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.Presenter.QuenMatKhau.PresenterLogicQuenMatKhau;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.view.DangNhap.DangNhapActivity;
@@ -20,7 +21,7 @@ public class ThongTinMatKhauActivity extends AppCompatActivity implements View.O
 
     Toolbar toolbar;
     TextInputEditText edtMatKhau,edtNhapLaiMatKhau;
-    Button btnDoiMatKhau;
+    FButton btnDoiMatKhau;
     PresenterLogicQuenMatKhau presenterLogicQuenMatKhau;
 
     @Override
@@ -28,7 +29,7 @@ public class ThongTinMatKhauActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_doimatkhau);
 
-        btnDoiMatKhau = (Button) findViewById(R.id.btnDoiMatKhau);
+        btnDoiMatKhau = (FButton) findViewById(R.id.btnDoiMatKhau);
         edtNhapLaiMatKhau = (TextInputEditText) findViewById(R.id.edtNhapLaiMatKhauDoiMatKhau);
         edtMatKhau = (TextInputEditText) findViewById(R.id.edtMatKhauDoiMatKhau);
         toolbar = (Toolbar) findViewById(R.id.toolbarDoiMatKhau);
