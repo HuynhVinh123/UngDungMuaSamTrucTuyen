@@ -45,8 +45,8 @@ public class PrensenterLogicThemSanPham implements  IPresenterThemSanPham{
         return  thuongHieuList;
     }
 
-    public boolean ThemSanPham(String convertImage1, String convertImage2, String convertImage3, SanPham sanPham, List<ThongSoKyThuat> thongSoKyThuatList){
-        boolean kiemtra = themSanPhamModel.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham);
+    public boolean ThemSanPham(String convertImage1, String convertImage2, String convertImage3, SanPham sanPham, List<ThongSoKyThuat> thongSoKyThuatList, int uytin){
+        boolean kiemtra = themSanPhamModel.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,uytin);
         if(kiemtra)
         {
             if(sanPham.getMALOAISP() == 2 || sanPham.getMALOAISP() == 3 || sanPham.getMALOAISP() == 4)

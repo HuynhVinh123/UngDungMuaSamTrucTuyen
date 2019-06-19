@@ -29,6 +29,11 @@ public class PresenterLogicQuanLyTaiKhoan implements IPresenterQuanLyTaiKhoan {
 
     }
 
+    public  NhanVien LayThongTinNhanVienMaNV(String manv){
+        NhanVien nhanVien = quanLyTaiKhoanModel.LayThongTinNhanVien(manv);
+        return  nhanVien;
+    }
+
     public NhanVien LayThongTinNhanVienID(String id){
         NhanVien nhanVien = quanLyTaiKhoanModel.LayThongTinNhanVienBangId(id);
 

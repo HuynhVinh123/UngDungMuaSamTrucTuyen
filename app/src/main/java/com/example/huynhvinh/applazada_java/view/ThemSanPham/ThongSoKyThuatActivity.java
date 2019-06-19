@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.huynhvinh.applazada_java.CustomView.FButton;
 import com.example.huynhvinh.applazada_java.R;
@@ -138,6 +139,8 @@ public class ThongSoKyThuatActivity extends AppCompatActivity  implements View.O
             thongSo10.setTenchitiet(txt_BoNhoTrong.getText().toString());
             thongSo10.setGiatri(edt_BoNhoTrong.getText().toString() + " GB");
             thongSoKyThuatViewModel.themThongSo(thongSo10);
+
+            Toasty.success(this,"Thông số kỹ thuật đã được thêm !", Toasty.LENGTH_SHORT,true).show();
         }
 
         onBackPressed();

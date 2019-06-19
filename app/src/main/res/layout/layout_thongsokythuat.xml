@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -353,6 +354,7 @@
                         android:backgroundTint="@color/colorWhite"
                         android:hint="......................."
                         android:background="@color/colorWhite"
+                        android:inputType="number"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -400,6 +402,7 @@
                         android:backgroundTint="@color/colorWhite"
                         android:hint="......................."
                         android:background="@color/colorWhite"
+                        android:inputType="number"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -559,7 +562,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(Chú ý:  Nếu không có thông số bạn vui lòng điền không)"
+            android:text="(Chú ý:  Nếu không có thông số bạn vui lòng điền 'không')"
             android:textColor="@color/colorBlack"
             android:padding="8dp"
             android:textSize="12sp"

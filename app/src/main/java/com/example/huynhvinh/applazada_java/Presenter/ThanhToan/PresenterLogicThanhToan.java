@@ -25,8 +25,8 @@ public class PresenterLogicThanhToan implements IPresenterThanhToan {
     }
 
     @Override
-    public void ThemHoaDon(HoaDon hoaDon) {
-        boolean kiemtra = thanhToanModel.ThemHoaDon(hoaDon);
+    public void ThemHoaDon(HoaDon hoaDon,int manv, int uytin) {
+        boolean kiemtra = thanhToanModel.ThemHoaDon(hoaDon,manv,uytin);
         if(kiemtra)
         {
             thanhToanModel.CapNhatSoLuongSanPham(hoaDon);

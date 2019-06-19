@@ -17,11 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.huynhvinh.applazada_java.CustomView.FButton;
+import com.example.huynhvinh.applazada_java.Presenter.QuanLyTaiKhoan.PresenterLogicQuanLyTaiKhoan;
 import com.example.huynhvinh.applazada_java.Presenter.ThanhToan.PresenterLogicThanhToan;
 import com.example.huynhvinh.applazada_java.R;
 import com.example.huynhvinh.applazada_java.model.DangNhap_DangKy.DangNhapModel;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.ChiTietHoaDon;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.HoaDon;
+import com.example.huynhvinh.applazada_java.model.ObjectClass.NhanVien;
 import com.example.huynhvinh.applazada_java.model.ObjectClass.SanPham;
 import com.example.huynhvinh.applazada_java.view.TrangChu.TrangChuActivity;
 
@@ -39,9 +41,11 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
     FButton btnThanhToan;
     CheckBox cbThoaThuan,cb_giaohang;
     PresenterLogicThanhToan presenterLogicThanhToan;
+    PresenterLogicQuanLyTaiKhoan presenterLogicQuanLyTaiKhoan;
     List<ChiTietHoaDon> chiTietHoaDonList = new ArrayList<>();
-    int giatien;
+    int giatien,manv;
     String manguoinhan;
+    private NhanVien nhanVien = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +73,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
 
         giatien = getIntent().getIntExtra("sotien",0);
 
+        presenterLogicQuanLyTaiKhoan = new PresenterLogicQuanLyTaiKhoan();
         presenterLogicThanhToan = new PresenterLogicThanhToan(this,this);
         presenterLogicThanhToan.LayDanhSachSanPhamTrongGioHang(this);
 
@@ -85,10 +90,20 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
         String tennguoinhan = dangNhapModel.LayCachedDangNhap(this);
         String sodt = dangNhapModel.LayCacheSoDTDangNhap(this);
         String diachi = dangNhapModel.LayCacheDiaChiDangNhap(this);
+        String keyCheck = dangNhapModel.LayCacheKiemTraDangNhap(this);
         manguoinhan = dangNhapModel.LayCacheMaNVDangNhap(this);
 
+        if(!keyCheck.trim().equals("3"))
+        {
+            nhanVien = presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(manguoinhan);
+            manv = nhanVien.getMaNV();
+        }else {
+            nhanVien = presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienMaNV(manguoinhan);
+            manv = Integer.parseInt(manguoinhan);
+        }
+
         edTenNguoiNhan.setText(tennguoinhan);
-        Log.d("kiemtra",diachi);
+
         if(!diachi.equals("null"))
         {
             edDiaChi.setText(diachi);
@@ -141,7 +156,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                         hoaDon.setSoTien(giatien);
                         hoaDon.setMaNguoiNhan(manguoinhan);
                         hoaDon.setChiTietHoaDonList(chiTietHoaDonList);
-                        presenterLogicThanhToan.ThemHoaDon(hoaDon);
+                        presenterLogicThanhToan.ThemHoaDon(hoaDon,manv,nhanVien.getUyTin() + 3);
                     }else {
                         Toasty.warning(this,"Bạn chưa nhấn chọn vào ô thỏa thuận !", Toast.LENGTH_SHORT,true).show();
                     }

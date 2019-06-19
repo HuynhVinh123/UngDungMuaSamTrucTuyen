@@ -2,8 +2,16 @@ package com.example.huynhvinh.applazada_java.model.ObjectClass;
 
 public class NhanVien {
 
-    int MaNV, MaLoaiNV, GioiTinh;
+    int MaNV, MaLoaiNV, GioiTinh,UyTin;
     String TenDN,MatKhau,DiaChi,NgaySinh,SoDT,EmailDocQuyen,TenNV,IdDangNhap;
+
+    public int getUyTin() {
+        return UyTin;
+    }
+
+    public void setUyTin(int uyTin) {
+        UyTin = uyTin;
+    }
 
     public String getIdDangNhap() {
         return IdDangNhap;

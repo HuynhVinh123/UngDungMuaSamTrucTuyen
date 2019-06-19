@@ -94,6 +94,7 @@
                     android:textColor="@color/colorFacebook"
 
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,9 +115,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:checked="false"
+                            android:checked="true"
                             android:background="@color/colorWhite"
                             android:buttonTint="@color/colorGreen"
+
                             />
 
                         <ImageButton
@@ -152,7 +154,7 @@
                             android:layout_gravity="left"
                             android:checked="false"
                             android:background="@color/colorWhite"
-                            android:buttonTint="@color/colorGreen"
+                            android:buttonTint="@color/colorWhite"
                             />
                         <ImageButton
                             android:id="@+id/imChuyenKhoan"
@@ -161,7 +163,6 @@
                             android:src="@drawable/visa"
                             android:scaleType="centerInside"
                             android:background="@color/colorWhite"
-
                             />
 
                         <TextView

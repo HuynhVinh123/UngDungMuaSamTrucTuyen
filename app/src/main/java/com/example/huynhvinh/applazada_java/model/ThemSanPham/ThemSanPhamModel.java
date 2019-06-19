@@ -64,7 +64,7 @@ public class ThemSanPhamModel {
 
 
 
-    public boolean ThemSanPham(String convertImage1, String convertImage2, String convertImage3, SanPham sanPham){
+    public boolean ThemSanPham(String convertImage1, String convertImage2, String convertImage3, SanPham sanPham,int uytin){
         boolean ketqua = false;
         String dataJSON = "";
         List<HashMap<String,String>> attrs = new ArrayList<>();
@@ -129,7 +129,8 @@ public class ThemSanPhamModel {
         hashMaNV.put("manv",String.valueOf(sanPham.getMANV()));
 
 
-
+        HashMap<String,String> hashUyTin = new HashMap<>();
+        hashUyTin.put("uytin",String.valueOf(uytin));
 
         attrs.add(hashMaLoaiCha);
         attrs.add(hashImageName1);
@@ -146,6 +147,7 @@ public class ThemSanPhamModel {
         attrs.add(hashMaLoaiSP);
         attrs.add(hashMaNV);
         attrs.add(hashMaThuongHieu);
+        attrs.add(hashUyTin);
 
         DownloadJSON downloadJSON =  new DownloadJSON(duongdan,attrs);
         downloadJSON.execute();

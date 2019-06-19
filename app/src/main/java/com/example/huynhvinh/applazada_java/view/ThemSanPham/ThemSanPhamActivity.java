@@ -230,7 +230,17 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                     else {
                         DangNhapModel dangNhapModel = new DangNhapModel();
                         String manv = dangNhapModel.LayCacheMaNVDangNhap(this);
-                        NhanVien nhanVien =  presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(manv);
+                        String keyCheck = dangNhapModel.LayCacheKiemTraDangNhap(this);
+                        NhanVien nhanVien;
+
+                        if(!keyCheck.trim().equals("3"))
+                        {
+                            nhanVien = presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienID(manv);
+
+                        }else {
+                            nhanVien = presenterLogicQuanLyTaiKhoan.LayThongTinNhanVienMaNV(manv);
+                        }
+
                         sanPham = new SanPham();
                         // get Thông sô kỹ thuật
                         thongSoKyThuatViewModel = ViewModelProviders.of(this).get(ThongSoKyThuatViewModel.class);
@@ -277,7 +287,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                                             convertImage3 = Base64.encodeToString(byteArray3, Base64.DEFAULT);
                                         }
 
-                                        boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,sanPham.getThongSoKyThuatList());
+                                        boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,sanPham.getThongSoKyThuatList(),nhanVien.getUyTin() + 3);
                                         if(kiemtra)
                                         {
                                             Toasty.success(ThemSanPhamActivity.this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT,true).show();
@@ -335,7 +345,7 @@ public class ThemSanPhamActivity extends AppCompatActivity implements View.OnCli
                                         convertImage3 = Base64.encodeToString(byteArray3, Base64.DEFAULT);
                                     }
 
-                                    boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,sanPham.getThongSoKyThuatList());
+                                    boolean kiemtra =prensenterLogicThemSanPham.ThemSanPham(convertImage1,convertImage2,convertImage3,sanPham,sanPham.getThongSoKyThuatList(),nhanVien.getUyTin() + 3);
                                     if(kiemtra)
                                     {
                                         Toasty.success(ThemSanPhamActivity.this, "Thêm sản phẩm thành công !", Toast.LENGTH_SHORT,true).show();

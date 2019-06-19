@@ -149,6 +149,7 @@
                     android:textSize="13sp"
                     android:backgroundTint="@drawable/custom_focus_edittext"
                     android:background="@drawable/custom_editext"
+                    android:layout_marginTop="12dp"
                     />
 
             </android.support.design.widget.TextInputLayout>

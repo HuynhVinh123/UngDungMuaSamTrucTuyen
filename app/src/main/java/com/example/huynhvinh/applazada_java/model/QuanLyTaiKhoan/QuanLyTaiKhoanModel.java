@@ -54,6 +54,7 @@ public class QuanLyTaiKhoanModel {
                 nhanVien.setSoDT(object.getString("SODT"));
                 nhanVien.setTenDN(object.getString("TENDN"));
                 nhanVien.setGioiTinh(object.getInt("GIOITINH"));
+                nhanVien.setUyTin(object.getInt("UYTIN"));
             }
 
         } catch (InterruptedException e) {
@@ -103,6 +104,7 @@ public class QuanLyTaiKhoanModel {
                 nhanVien.setSoDT(object.getString("SODT"));
                 nhanVien.setTenDN(object.getString("TENDN"));
                 nhanVien.setGioiTinh(object.getInt("GIOITINH"));
+                nhanVien.setUyTin(object.getInt("UYTIN"));
             }
 
         } catch (InterruptedException e) {

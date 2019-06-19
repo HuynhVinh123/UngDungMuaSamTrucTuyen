@@ -21,8 +21,8 @@ public class PresenterLogicDanhGia implements  IPresenterDanhGia {
     }
 
     @Override
-    public void ThemDanhGia(DanhGia danhGia) {
-        boolean kiemtra = danhGiaModel.ThemDanhGia(danhGia);
+    public void ThemDanhGia(DanhGia danhGia,String convertImage1,String convertImage2,String convertImage3,int uyTin) {
+        boolean kiemtra = danhGiaModel.ThemDanhGia(danhGia,convertImage1,convertImage2,convertImage3,uyTin);
         if(kiemtra){
             viewDanhgia.DanhGiaThanhCong();
         }
@@ -51,5 +51,11 @@ public class PresenterLogicDanhGia implements  IPresenterDanhGia {
         {
             viewDanhgia.HienThiDanhSachDanhGiaCuaNhanVien(danhGiaList);
         }
+    }
+
+    @Override
+    public boolean KiemTraThanhVienCoMuaHang(String manv, int masp) {
+        boolean kiemtra = danhGiaModel.KiemTraSanPhamDaDuocMua(manv,masp);
+        return  kiemtra;
     }
 }

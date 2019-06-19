@@ -1,9 +1,17 @@
 package com.example.huynhvinh.applazada_java.model.ObjectClass;
 
 public class DanhGia {
-    String MADG,TENTHIETBI,TIEUDE,NOIDUNG,NGAYDANHGIA;
+    String MADG,TENTHIETBI,TIEUDE,NOIDUNG,NGAYDANHGIA,HINHDANHGIA;
     int SOSAO,MASP,MANV;
     SanPham sanPham;
+
+    public String getHINHDANHGIA() {
+        return HINHDANHGIA;
+    }
+
+    public void setHINHDANHGIA(String HINHDANHGIA) {
+        this.HINHDANHGIA = HINHDANHGIA;
+    }
 
     public SanPham getSanPham() {
         return sanPham;

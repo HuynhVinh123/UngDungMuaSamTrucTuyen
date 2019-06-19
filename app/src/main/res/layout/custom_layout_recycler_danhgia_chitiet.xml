@@ -68,6 +68,41 @@
         android:layout_marginTop="8dp"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:id="@+id/imgBinhLuan1"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:id="@+id/imgBinhLuan2"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:id="@+id/imgBinhLuan3"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayChiTiet"
+        />
 
 </LinearLayout>

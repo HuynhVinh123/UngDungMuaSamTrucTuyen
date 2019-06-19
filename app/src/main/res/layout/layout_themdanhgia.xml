@@ -66,18 +66,101 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:scaleY=".5"
-                android:scaleX=".5"
+                android:scaleY="1"
+                android:scaleX="1"
                 android:transformPivotY="0dp"
                 android:transformPivotX="0dp"
                 android:theme="@style/DoiMauNgoiSaoRatingBar"
+                android:layout_gravity="center"
                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/custom_image"
+                    android:layout_marginLeft="8dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    >
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="+ Thêm Hình Ảnh"
+                        android:textColor="@color/colorRed"
+                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        />
+                    <ImageView
+                        android:id="@+id/imgDanhGia1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+
+                        />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/custom_image"
+                    android:layout_marginLeft="8dp"
+                    android:layout_margin="8dp"
+
+                    >
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:text="+ Thêm Hình Ảnh"
+                        android:textColor="@color/colorRed"
+                        android:textSize="12sp" />
+                    <ImageView
+                        android:id="@+id/imgDanhGia2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+
+                        />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/custom_image"
+                    android:layout_marginLeft="8dp"
+                    android:layout_margin="8dp"
+                    >
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="+ Thêm Hình Ảnh"
+                        android:textColor="@color/colorRed"
+                        android:textSize="12sp"
+                        android:layout_gravity="center"
+                        />
+                    <ImageView
+                        android:id="@+id/imgDanhGia3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerInside"
+                        />
+                </FrameLayout>
+
+            </LinearLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_edtTieuDeDanhGia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 >
-
                 <EditText
                     android:id="@+id/edtTieuDe"
                     android:layout_width="match_parent"

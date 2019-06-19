@@ -65,6 +65,7 @@ public class ChiTietSanPhamModel {
                 danhGia.setNGAYDANHGIA(object.getString("NGAYDANHGIA"));
                 danhGia.setTIEUDE(object.getString("TIEUDE"));
                 danhGia.setMANV(object.getInt("MANV"));
+                danhGia.setHINHDANHGIA(object.getString("HINHDANHGIA"));
 
                 danhGiaList.add(danhGia);
             }

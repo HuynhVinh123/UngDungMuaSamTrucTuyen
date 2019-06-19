@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ThanhToanModel {
 
-    public boolean ThemHoaDon(HoaDon hoaDon){
+    public boolean ThemHoaDon(HoaDon hoaDon, int manv, int uytin){
 
         // Lấy dữ liệu bằng phương thức POST
         String duongdan = IPConnect.IP ;
@@ -75,6 +75,14 @@ public class ThanhToanModel {
         HashMap<String,String> hsSoTien = new HashMap<>();
         hsSoTien.put("sotien",String.valueOf(hoaDon.getSoTien()));
 
+        HashMap<String,String> hsMaNV = new HashMap<>();
+        hsMaNV.put("manv",String.valueOf(manv));
+
+        HashMap<String,String> hsUyTin = new HashMap<>();
+        hsUyTin.put("uytin",String.valueOf(uytin));
+
+        attrs.add(hsMaNV);
+        attrs.add(hsUyTin);
         attrs.add(hsHam);
         attrs.add(hsDanhSachSanPham);
         attrs.add(hsTenNguoiNhan);
