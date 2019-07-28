@@ -57,6 +57,9 @@ public class QuanLyDonHangAdapter extends RecyclerView.Adapter<QuanLyDonHangAdap
         {
             viewHolder.txtTrangThai.setText("Đang vận chuyển");
         }
+        else if(hoaDonList.get(i).getTrangThai().trim().equals("dakiemduyet")){
+            viewHolder.txtTrangThai.setText("Đã kiểm duyệt");
+        }
         viewHolder.txtSoLuongSP.setText(hoaDonList.get(i).getChiTietHoaDonList().size()+ " sản phẩm");
         Picasso.with(context).load(hoaDonList.get(i).getChiTietHoaDonList().get(0).getHinhLon()).into(viewHolder.imgHoaDon);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {

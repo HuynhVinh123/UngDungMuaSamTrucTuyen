@@ -60,7 +60,7 @@ import es.dmoral.toasty.Toasty;
 
 public class TrangChuActivity extends AppCompatActivity implements View.OnClickListener,ViewXuLyMenu {
 
-    public static final String SERER = "http://192.168.1.121:8080/weblazada/webadmin";
+    public static final String SERER = "http://192.168.43.58:8080/weblazada/webadmin";
 
     Button btnTimKiem;
     Toolbar toolbar;

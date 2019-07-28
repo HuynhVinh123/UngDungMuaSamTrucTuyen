@@ -60,7 +60,9 @@ public class DonHangActivity extends AppCompatActivity implements  ViewDonHang{
         {
             getSupportActionBar().setTitle("Đơn hàng đang vận chuyển");
         }
-
+        else if(trangthai.equals("dakiemduyet")){
+            getSupportActionBar().setTitle("Đã kiểm duyệt");
+        }
         presenterLogicQuanLyTrangThaiHoaDon = new PresenterLogicQuanLyTrangThaiHoaDon(this);
         presenterLogicQuanLyTrangThaiHoaDon.LayDanhSachHoaDonTheoTrangThai(trangthai,manguoinhan);
 

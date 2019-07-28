@@ -20,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 public class DienTuModel {
 
 
-
     public List<SanPham> LayDanhSachSanPhamTOP(String tenham,String tenmang){
         List<SanPham> sanPhamList = new ArrayList<>();
         String dataJSON = "";

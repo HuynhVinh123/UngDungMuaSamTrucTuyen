@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,10 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.ViewHold
         }else if(hoaDonList.get(i).getTrangThai().trim().equals("dangvanchuyen"))
         {
             viewHolder.txtTrangThai.setText("Đang vận chuyển");
+        }else if(hoaDonList.get(i).getTrangThai().trim().equals("dakiemduyet")){
+            viewHolder.txtTrangThai.setText("Đã kiểm duyệt");
         }
+
         viewHolder.txtSoLuongSP.setText(hoaDonList.get(i).getChiTietHoaDonList().size()+ " sản phẩm");
         Picasso.with(context).load(hoaDonList.get(i).getChiTietHoaDonList().get(0).getHinhLon()).into(viewHolder.imgHoaDon);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
